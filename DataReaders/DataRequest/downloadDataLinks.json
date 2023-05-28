@@ -1,0 +1,15 @@
+{
+    "Snapchat" : {
+        "link" : "https://accounts.snapchat.com/accounts/downloadmydata"
+    },
+    "Google" : 
+    {
+        "link" : "https://takeout.google.com/"
+    },
+    "Instagram" : {
+        "link" : "https://www.instagram.com/download/request"
+    },
+    "Chrome" : {
+
+    }
+}
