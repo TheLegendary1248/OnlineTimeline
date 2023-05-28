@@ -1,0 +1,7 @@
+* {
+    font-family: Tahoma, Verdana, Geneva, sans-serif;
+}
+details {
+    position: relative;
+    left: 10px;
+}

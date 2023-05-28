@@ -1,14 +1,22 @@
-import dearpygui.dearpygui as dpg
-import globals
+from PyQt6.QtWidgets import QApplication,QWidget,QLabel,QVBoxLayout,QFileDialog
+from PyQt6.QtCore import Qt
+import sys
+import time
+app=QApplication([])
+app.setStyle('Fusion')
+app.setApplicationName('Online Timeline')
+win=QWidget()
+win.setBaseSize(200,200)
+def SetNewTextView()
+def StartUp():
 
-dpg.create_context()
-dpg.create_viewport(title='Custom Title', width=600, height=300)
+    layout=QVBoxLayout()
+    label=QLabel('Please wait a moment while the program loads', alignment=Qt.AlignmentFlag.AlignCenter)
+    layout.addWidget(label)
 
-with dpg.window(label="Example Window"):
-    for i in globals.CONFIG:
-        dpg.add_button(label=str(i), width=200, height=200)
-    
-dpg.setup_dearpygui()
-dpg.show_viewport()
-dpg.start_dearpygui()
-dpg.destroy_context()
+    win.setLayout(layout)
+    win.show()
+
+StartUp()
+sys.exit(app.exec())
+
