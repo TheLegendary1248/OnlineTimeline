@@ -1,15 +1,78 @@
 <!DOCTYPE html>
+
 <head>
     <link rel="stylesheet" href="globalstyle.css">
 </head>
+
 <body>
     <h1>usersaves Folder Structure</h1>
     <div class="folderstructure">
         <details>
             <summary>usersaves</summary>
-            <div>
+            <span>This is the main folder for all of your data after it has been processed by the program</span>
+            <div class="folder">
                 <details>
                     <summary>&lt;year&gt;</summary>
+                    <span>This folder contains all relevant data for the given year</span>
+                    <div class="folder">
+                        <details>
+                            <summary>&lt;month&gt;</summary>
+                            <span>This folder contains all relevant data for the given month</span>
+                            <div class="file">
+                                <details>
+                                    <summary>&lt;day&gt;.json</summary>
+                                    <p>This file should contain relevant information for the program about the day given
+                                    <p>
+                                </details>
+                            </div>
+                        </details>
+                    </div>
+                </details>
+            </div>
+            <div class="folder">
+                <details>
+                    <summary>objects</summary>
+                    <div class="folder">
+                        <details>
+                            <summary>global</summary>
+                            <div class="folder">
+                                <summary>&lt;object&gt;</summary>
+                                <p>This folder should contain relevant information for the given object.</p>
+                                <p>The expected context is that each should represent a person's account or sort of
+                                    entity outside of each platform and link to them</p>
+                            </div>
+                        </details>
+                    </div>
+                    <div class="folder">
+                        <details>
+                            <summary>platforms</summary>
+                            <div class="folder">
+                                <summary>&lt;platform&gt;</summary>
+                                <div class="folder">
+                                    <summary>&lt;object&gt;</summary>
+                                    <p>This folder should contain relevant information for the given object.</p>
+                                    <p>The expected context is that each should represent a person's account or sort of
+                                        entity on the given platform</p>
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+                </details>
+            </div>
+            <div class="folder">
+                <details>
+                    <summary>path_reference</summary>
+                    <p>This folder contain json files that tell the program where your data is located and their format</p>
+                    <div class="file">
+                        <summary>[UNDECIDEDNAME].json</summary>
+                        <p></p>
+                    </div>
+                </details>
+            </div>
+            <div class="file">
+                <details>
+                    <summary>README.md</summary>
+                    <p>A simple README file that should refer to this doc</p>
                 </details>
             </div>
         </details>

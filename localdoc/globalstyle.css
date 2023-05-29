@@ -3,5 +3,29 @@
 }
 details {
     position: relative;
-    left: 10px;
+    
+    padding: 2px;
+    padding-left: 15px;
+}
+details summary {
+    font-weight: 600;
+    font-size: 15px;
+    font-family: monospace;
+    color: white;
+    width: fit-content;
+}
+.folderstructure {
+    background-color: #333;
+    border-radius: 5px;
+}
+.folderstructure div {
+    border-radius: 5px;
+    border: #111 solid 1px;
+    margin: 6px 0px;
+}
+.folderstructure .folder{
+    background-color: #861;
+}
+.folderstructure .file{
+    background-color: #047;
 }
