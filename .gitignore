@@ -1,4 +1,7 @@
+#settings file created by program
 settings.json
+#default user save location created by program
+usersaves
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
