@@ -10,14 +10,48 @@ savePath = Path(globals.CONFIG["SaveLocation"])
 timelinePath = savePath / "timeline"
 objectsPath = savePath / "objects"
 
+
+
+class Event:
+    """Represents a data point, or that sorta of thing"""
+    def __init__(self, id, timestamp, content) -> None:
+        """
+        
+        id is """
+        self.timestamp = timestamp
+        self.content = content
+        self.id = id
+    def toObject(self) -> object:
+        """Converts the Event into it's appropiate JSON object"""
+        obj = {
+            self.id :
+            {
+                "time" : self.timestamp,
+                "data" : self.content,
+            }
+        }
+        return obj
+
 def AppendDay(date: datetime.datetime):
     """Appends onto the day file"""
     fileDayPath = timelinePath / f"{date.year}/{date.month}/{date.day}.json"
     EnsurePath(fileDayPath)
     file = fileDayPath.open("w")
-    json.dump({"hey": "ok", "array":[1,2,3]},file)
+    #Get day as an object
+    dayObject = dict()
+    events = dict()
+    dayObject.update(events)
+
+    json.dumps(dayObject, file)
+
     file.flush()
     file.close()
+    pass
+
+def SaveEvents(events: list[Event]):
+    """Saves the list of events to their corresponding files"""
+    for event in events:
+        
     pass
 
 def GetExistingJSONObject():
@@ -33,5 +67,4 @@ def EnsurePath(path: Path):
             path.mkdir(parents=True, exist_ok=True)
         else:
             path.parent.mkdir(parents=True, exist_ok=True)
-
 AppendDay(datetime.datetime.now())

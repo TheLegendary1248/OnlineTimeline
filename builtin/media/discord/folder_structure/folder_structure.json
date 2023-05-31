@@ -1,0 +1,17 @@
+{
+    "messages": {
+        "isFile": false,
+        "data": {
+            "^c": {
+                "isRegex": true,
+                "isFile": false,
+                "data": {
+                    "messages.csv": {
+                        "isFile": true,
+                        "reader_config": ""
+                    }
+                }
+            }
+        }
+    }
+}

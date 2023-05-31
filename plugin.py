@@ -14,3 +14,11 @@ def DetectFolderMedia():
 
     #Use regex matching next
     pass
+
+class FileHandlerBase():
+    def HandleFile():
+        """"""
+        pass
+    def LoadConfig(config: dict) -> None:
+        """Loads the configuration for this handler"""
+        pass

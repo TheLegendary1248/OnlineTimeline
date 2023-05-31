@@ -1,5 +1,8 @@
 {
-    "MediumID" : {
-         
+    "MediumID": {
+        "EventID": {
+            "time": 0,
+            "data": {}
+        }
     }
 }
