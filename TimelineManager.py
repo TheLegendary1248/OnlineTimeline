@@ -16,8 +16,11 @@ def AppendDay(date: datetime.datetime):
     file.close()
     pass
 
+def GetExistingJSONObject():
+    """Get the existing json object for said day"""
+
 def EnsurePath(path: Path):
-    """This function should get the file or folder at said path, or create one if not present"""
+    """Get the file or folder at said path, or create one if not present"""
     if path.exists():
         pass
     else:

@@ -1,9 +1,3 @@
-file = open("newFold/Ohshit/EY.txt", 'w')
-file.write("HEY!")
-file.close()
-
-
-exit()
 from PyQt6.QtWidgets import QApplication,QWidget,QLabel,QVBoxLayout,QFileDialog,QPushButton
 from PyQt6.QtCore import Qt
 import sys
