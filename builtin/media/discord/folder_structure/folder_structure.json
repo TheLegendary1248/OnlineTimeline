@@ -1,14 +1,20 @@
 {
     "messages": {
         "isFile": false,
+        "desc": "This folder is known to contain all of your messages sent in servers and DM's",
         "data": {
-            "^c": {
+            "^c+([0-9])*": {
                 "isRegex": true,
                 "isFile": false,
+                "desc": "This folder contains a csv that contains all of your messages sent in the channel determined by the accompanying channel.json",
                 "data": {
                     "messages.csv": {
                         "isFile": true,
-                        "reader_config": ""
+                        "reader_config": "messages"
+                    },
+                    "channel.json": {
+                        "isFile": true
+                        
                     }
                 }
             }

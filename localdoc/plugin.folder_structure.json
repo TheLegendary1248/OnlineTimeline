@@ -1,0 +1,14 @@
+{
+    "folder": {
+        "desc": "This is the description the program should use for the given folder",
+        "isFile" : false,
+        "isRegex" : false,
+        "data" : {
+            "exampleFile.ext" : {
+                "desc" : "This is the description the program should use for the given file",
+                "isFile":true,
+                "reader_config" : "config"
+            } 
+        }
+    }
+}
