@@ -5,10 +5,14 @@ import json
 import os
 import datetime
 
-savePath = Path(globals.CONFIG["SaveLocation"]) / "timeline"
+savePath = Path(globals.CONFIG["SaveLocation"])
+
+timelinePath = savePath / "timeline"
+objectsPath = savePath / "objects"
+
 def AppendDay(date: datetime.datetime):
     """Appends onto the day file"""
-    fileDayPath = savePath / f"{date.year}/{date.month}/{date.day}.json"
+    fileDayPath = timelinePath / f"{date.year}/{date.month}/{date.day}.json"
     EnsurePath(fileDayPath)
     file = fileDayPath.open("w")
     json.dump({"hey": "ok", "array":[1,2,3]},file)

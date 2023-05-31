@@ -3,7 +3,7 @@ from PyQt6.QtCore import Qt
 import sys
 import time
 app=QApplication([])
-#app.setStyle('Fusion')
+app.setStyle('Fusion')
 app.setApplicationName('Online Timeline')
 win=QWidget()
 win.setBaseSize(200,200)

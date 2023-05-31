@@ -3,7 +3,8 @@ import json
 from pathlib import Path
 
 VARS = {
-    "ROOT_DIR" : str(Path.cwd()) 
+    "ROOT_DIR" : str(Path.cwd()),
+    "BUILTIN_DIR" : str(Path.cwd() / "builtin")
 }
 """Contains global variables determined at run time"""
 CONFIG = {

@@ -1,0 +1,7 @@
+{
+    "fileExt": "csv",
+    "config" : {
+        "skipFirst": true,
+        
+    }
+}
