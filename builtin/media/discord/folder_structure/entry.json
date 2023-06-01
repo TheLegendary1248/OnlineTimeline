@@ -21,12 +21,22 @@
     },
     "account": {
         "isFile": false,
-        "desc": "This folder contains information relevant to your discord account"
+        "desc": "This folder contains information relevant to your discord account",
+        "data" : {
+            "avatar.png": {
+                "isFile": true,
+                "desc": "Your profile picture"
+            },
+            "account.json": {
+                "isFile":true,
+                "desc": "Information about your account in general"
+            }
+        }
     },
     "activities_e": {},
     "activities_w": {},
     "activity": {
-        "desc": "This folder contains information about your most recent activity. It seems to me to be your activity of the last month or so"
+        "desc": "This folder contains information about your most recent activity. It seems to me to be your activity of the last six months or so"
     },
     "programs": {},
     "servers": {}
