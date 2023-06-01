@@ -1,5 +1,8 @@
 {
     "author" : "1248", 
     "media_name" : "Discord",
-    "version" : "5/31/2023"
+    "version" : {
+        "type" : "date",
+        "value" : "5/31/23"
+    }
 }

@@ -14,10 +14,20 @@
                     },
                     "channel.json": {
                         "isFile": true
-                        
                     }
                 }
             }
         }
-    }
+    },
+    "account": {
+        "isFile": false,
+        "desc": "This folder contains information relevant to your discord account"
+    },
+    "activities_e": {},
+    "activities_w": {},
+    "activity": {
+        "desc": "This folder contains information about your most recent activity. It seems to me to be your activity of the last month or so"
+    },
+    "programs": {},
+    "servers": {}
 }

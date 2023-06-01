@@ -51,8 +51,7 @@ def AppendDay(date: datetime.datetime):
 def SaveEvents(events: list[Event]):
     """Saves the list of events to their corresponding files"""
     for event in events:
-        
-    pass
+        pass
 
 def GetExistingJSONObject():
     """Get the existing json object for said day"""

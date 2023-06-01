@@ -12,7 +12,7 @@ if __name__ == '__main__':
 from plugin import FileHandlerBase
 from TimelineManager import Event
 
-defaultDialect = None
+defaultDialect = csv.Dialect()
 
 class BuiltinCSVHandler(FileHandlerBase):
     """The builtin handler for CSV files"""
@@ -36,8 +36,11 @@ class BuiltinCSVHandler(FileHandlerBase):
 ##Use the second argument as target file, and third argument as target config 
 if  __name__ == '__main__':
     with open(sys.argv[1], newline='') as csvfile:
-        spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
-        for row in spamreader:
+        reader = csv.reader(csvfile, delimiter=',', quotechar='|')
+        if 'ID' in reader:
+            pass
+
+        for row in reader:
             event = Event()
             print(', '.join(row))
     
