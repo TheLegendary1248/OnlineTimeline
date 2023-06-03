@@ -8,7 +8,8 @@ VARS = {
 }
 """Contains global variables determined at run time"""
 CONFIG = {
-    "SaveLocation" : str(Path.cwd() / "usersaves")
+    "SaveLocation" : str(Path.cwd() / "usersaves"),
+    "DataLocation" : ""
 }
 """Contains global variables"""
 

@@ -1,6 +1,9 @@
 import sys
+import typing
+
+from PyQt6 import QtCore
 import globals
-from PyQt6.QtWidgets import QMainWindow, QApplication, QPushButton, QWidget, QTabWidget,QVBoxLayout, QLabel
+from PyQt6.QtWidgets import QMainWindow, QApplication, QPushButton, QWidget, QTabWidget,QVBoxLayout, QHBoxLayout, QLabel, QFileDialog
 from PyQt6.QtGui import QIcon
 from PyQt6.QtCore import pyqtSlot
 
@@ -45,9 +48,34 @@ class ConfigArea(QWidget):
     def __init__(self, parent):
         super(QWidget, self).__init__(parent)
         self.layout = QVBoxLayout(self)
-        self.layout.addWidget(QLabel(globals.CONFIG["SaveLocation"]))
+        self.layout.addWidget(QLabel(globals.CONFIG["DataLocation"]))
+        self.layout.addWidget(FilePathSelector())
         self.setLayout(self.layout)
         
+class FilePathSelector(QWidget):
+    """Generic widget for displaying a file path """
+    def __init__(self) -> None:
+        super(QWidget,self).__init__()
+        self.layout = QHBoxLayout(self)
+        self.path = globals.CONFIG["DataLocation"]
+        self.label = QLabel(self.path)
+        self.browseButton = QPushButton()
+        self.browseButton.clicked.connect(self.setPath)
+        self.setStyleSheet("background-color:#33a")
+
+        #Add child widgets
+        self.layout.addWidget(self.label)
+        self.layout.addWidget(self.browseButton)
+        self.setLayout(self.layout)
+    def setPath(self):
+        self.path = QFileDialog.getExistingDirectory(self, 'Locate data folder', self.path)
+        if self.path != ('', ''):
+            self.label.setText(self.path)
+
+
+class DataFolderViewer():
+    """Class for viewing one's unprocessed data"""
+    pass
 class RequestLinks(QWidget):
     """This class handles the """
     def __init__(self, parent):
@@ -57,6 +85,9 @@ class RequestLinks(QWidget):
 
 class RequestLinkButton(QPushButton):
     """This class handles the button for a single request data link"""
+
+
+
 
 class MyTableWidget(QWidget):
     
@@ -79,13 +110,13 @@ class MyTableWidget(QWidget):
         self.tabs.addTab(self.tab3, "View")
         
         # Create first tab
-        self.tab1.layout = QVBoxLayout(self)
+        self.tab1.layout = QVBoxLayout()
         self.pushButton1 = QPushButton("PyQt6 button")
         self.tab1.layout.addWidget(self.pushButton1)
         self.tab1.setLayout(self.tab1.layout)
         
         #Second tab
-        self.tab2.layout = QVBoxLayout(self)
+        self.tab2.layout = QVBoxLayout()
         self.tab2.setLayout(self.tab2.layout)
         self.tab2.layout.addWidget(ConfigArea(self))
         # Add tabs to widget
