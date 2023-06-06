@@ -3,6 +3,8 @@ settings.json
 #default user save location created by program
 usersaves
 
+#UI forms for qt. I will probably not figure it out(the 'how to i use it effectively WITh my logic' part)
+qtForms
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

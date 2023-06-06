@@ -1,5 +1,6 @@
-from PyQt6.QtWidgets import *
 """This folder should be for reused GUI Widgets"""
+from PyQt6.QtWidgets import *
+
 
 class FilePathSelector(QWidget):
     """Generic widget for displaying a file path """

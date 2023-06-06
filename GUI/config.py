@@ -1,3 +1,4 @@
+"""This module is for the view of Configuration."""
 import sys
 import typing
 from PyQt6 import QtCore

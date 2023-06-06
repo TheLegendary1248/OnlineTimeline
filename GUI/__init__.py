@@ -7,6 +7,7 @@ from PyQt6.QtGui import QIcon
 from PyQt6.QtCore import pyqtSlot
 from GUI.presets import FilePathSelector
 from GUI.config import ConfigArea
+from GUI.dataView import DataView
 
 if __name__ == '__main__':
     raise BaseException("Cannot start here")
@@ -27,18 +28,6 @@ class App(QMainWindow):
         self.setCentralWidget(self.table_widget)
         
         self.show()
-
-
-
-
-
-
-
-class DataFolderViewer():
-    """Class for the main window of viewing one's unprocessed data"""
-
-    pass
-
 
 class MyTableWidget(QWidget):
     
@@ -62,7 +51,7 @@ class MyTableWidget(QWidget):
         
         # Create first tab
         self.tab1.layout = QVBoxLayout()
-        self.pushButton1 = QPushButton("PyQt6 button")
+        self.pushButton1 = Da
         self.tab1.layout.addWidget(self.pushButton1)
         self.tab1.setLayout(self.tab1.layout)
         
@@ -72,6 +61,7 @@ class MyTableWidget(QWidget):
         self.tab2.layout.addWidget(ConfigArea(self))
         # Add tabs to widget
         self.layout.addWidget(self.tabs)
+
         
     @pyqtSlot()
     def on_click(self):
