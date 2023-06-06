@@ -46,30 +46,38 @@ class App(QMainWindow):
 
 class ConfigArea(QWidget):
     def __init__(self, parent):
+        #TODO Update settings.json here
         super(QWidget, self).__init__(parent)
         self.layout = QVBoxLayout(self)
-        self.layout.addWidget(QLabel(globals.CONFIG["DataLocation"]))
-        self.layout.addWidget(FilePathSelector())
+        self.setStyleSheet("border-color:#000; border-width:3px;")
+        self.layout.addWidget(QLabel("Config Area"))
+        self.layout.addWidget(FilePathSelector(globals.CONFIG['SaveLocation']))
+        self.layout.addWidget(FilePathSelector(globals.CONFIG['DataLocation']))
         self.setLayout(self.layout)
-        
+
+
+
 class FilePathSelector(QWidget):
     """Generic widget for displaying a file path """
-    def __init__(self) -> None:
+    def __init__(self, path) -> None:
         super(QWidget,self).__init__()
         self.layout = QHBoxLayout(self)
-        self.path = globals.CONFIG["DataLocation"]
+        self.setFixedHeight(50)
+        self.path = path
         self.label = QLabel(self.path)
-        self.browseButton = QPushButton()
+        self.browseButton = QPushButton(self)
+        self.browseButton.setFixedWidth(50)
         self.browseButton.clicked.connect(self.setPath)
-        self.setStyleSheet("background-color:#33a")
 
         #Add child widgets
         self.layout.addWidget(self.label)
         self.layout.addWidget(self.browseButton)
         self.setLayout(self.layout)
+        
     def setPath(self):
-        self.path = QFileDialog.getExistingDirectory(self, 'Locate data folder', self.path)
-        if self.path != ('', ''):
+        path = QFileDialog.getExistingDirectory(self, 'Locate data folder', self.path)
+        if path != '': 
+            self.path = path
             self.label.setText(self.path)
 
 
