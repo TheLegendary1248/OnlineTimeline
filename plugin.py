@@ -1,3 +1,6 @@
+"""This module contains all necessary logic about Plugins"""
+from __future__ import annotations
+
 import re
 from pathlib import Path 
 import os
@@ -7,6 +10,7 @@ from configparser import ConfigParser
 
 
 class Plugin:
+    loadedPlugins: list[Plugin] = [] 
     """Main class to represent a plugin"""
     def __init__(self, pathstr: Path) -> None:
         #Do condition tests
@@ -17,7 +21,12 @@ class Plugin:
         self.mediaHandlers = None
         self.fileHandlers = None
         self.mediaNameMatch = MediaMatcher(pathstr / "media_name_match.ini")
+    @classmethod
+    def ReloadPlugins(cls) -> None:
+        """Reload plugins, at both the plugin folder and set external plugin folder"""
+        cls.loadedPlugins.append(Plugin(Path("builtin")))
 
+    
 class MediaHandler:
     "Class to represent the sub media handlers of the plugin"
     def __init__(self, pathstr: Path) -> None:
@@ -37,28 +46,27 @@ class MediaMatcher:
         self.regex = dict(parser['regex'].items())
         pprint(self.regex)
         
-    def GetFolderMedia(self, foldername) -> None:
+    def GetFolderMedia(self, foldername: str) -> None:
         "Determine the media of a folder"
-        mediaNames = []
-        for mediaName, exMatch in self.exact:
+        detectedNames = []
+        for mediaName, exMatch in self.exact.items():
             if exMatch == foldername:
-                mediaNames.append(mediaNames)
-        for mediaName, regMatch in self.regex:
+                detectedNames.append(mediaName)
+        for mediaName, regMatch in self.regex.items():
             pattern = re.compile(regMatch)
-            if pattern.fullmatch(pattern):
-                mediaNames.append[mediaName]
-        return { foldername : mediaNames}
+            if pattern.fullmatch(foldername):
+                detectedNames.append(mediaName)
+
+        return { foldername : detectedNames}
 
         #Test regex match
 
 def DetectFolderMedia():
     """Detects the media that a folder belongs to"""
-    #Get exact matches first
     for i in os.listdir(globals.CONFIG["DataLocation"]):
-        print()
-    #Use regex matching next
-    pass
+        pprint(Plugin.loadedPlugins[0].mediaNameMatch.GetFolderMedia(i))
 
+Plugin.ReloadPlugins()
 DetectFolderMedia()
 
 class FileHandlerBase():
@@ -69,8 +77,4 @@ class FileHandlerBase():
         """Loads the configuration for this handler"""
         pass
 
-def ReloadPlugins() -> None:
-    """Reload plugins, at both the plugin folder and set external plugin folder"""
-    Plugin(Path("builtin"))
 
-ReloadPlugins()
