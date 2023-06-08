@@ -41,18 +41,13 @@ class MediaMatcher:
         print(f'Got media_name_match at {pathstr}')
         parser = ConfigParser()
         parser.read(pathstr)
-        self.exact = dict(parser['exact'].items())
-        pprint(self.exact)
-        self.regex = dict(parser['regex'].items())
-        pprint(self.regex)
+        self.data = dict(parser['data'].items())
+        pprint(self.data)
         
     def GetFolderMedia(self, foldername: str) -> None:
         "Determine the media of a folder"
         detectedNames = []
-        for mediaName, exMatch in self.exact.items():
-            if exMatch == foldername:
-                detectedNames.append(mediaName)
-        for mediaName, regMatch in self.regex.items():
+        for mediaName, regMatch in self.data.items():
             pattern = re.compile(regMatch)
             if pattern.fullmatch(foldername):
                 detectedNames.append(mediaName)
