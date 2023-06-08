@@ -10,7 +10,7 @@
                 "data": {
                     "messages.csv": {
                         "isFile": true,
-                        "reader_config": "messages"
+                        "reader_config": "message"
                     },
                     "channel.json": {
                         "isFile": true
@@ -38,6 +38,8 @@
     "activity": {
         "desc": "This folder contains information about your most recent activity. It seems to me to be your activity of the last six months or so"
     },
-    "programs": {},
+    "programs": {
+        "desc": "The purpose of this folder is unknown"
+    },
     "servers": {}
 }

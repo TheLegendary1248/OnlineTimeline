@@ -51,8 +51,7 @@ class MediaMatcher:
             pattern = re.compile(regMatch)
             if pattern.fullmatch(foldername):
                 detectedNames.append(mediaName)
-
-        return { foldername : detectedNames}
+        return detectedNames
 
         #Test regex match
 
@@ -62,9 +61,11 @@ def DetectFolderMedia():
         pprint(Plugin.loadedPlugins[0].mediaNameMatch.GetFolderMedia(i))
 
 Plugin.ReloadPlugins()
-DetectFolderMedia()
 
 class FileHandlerBase():
+    """Base class for all file extension handlers"""
+    def __init__(self, config=dict) -> None:
+        pass
     def HandleFile():
         """"""
         pass
@@ -72,4 +73,7 @@ class FileHandlerBase():
         """Loads the configuration for this handler"""
         pass
 
-
+#Process command line arguments for function testing
+if __name__ == '__main__':
+    print("This file isn't setup to run commands")
+    exit()

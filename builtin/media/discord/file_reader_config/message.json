@@ -5,7 +5,7 @@
         "fields" : ["ID","Timestamp","Contents","Attachments"],
         "pythonCSVConfig" : {
             "delimiter": ","
-        }
-        
+        },
+        "id" : {}
     }
 }

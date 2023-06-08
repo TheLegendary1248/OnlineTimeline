@@ -15,12 +15,12 @@ objectsPath = savePath / "objects"
 class Event:
     """Represents a data point, or that sorta of thing"""
     def __init__(self, id, timestamp, content) -> None:
-        """
-        
-        id is """
         self.timestamp = timestamp
+        """The time at which this event happened"""
         self.content = content
+        """The content regarding this event"""
         self.id = id
+        """The unique id for this event"""
     def toObject(self) -> object:
         """Converts the Event into it's appropiate JSON object"""
         obj = {
@@ -42,11 +42,13 @@ def AppendDay(date: datetime.datetime):
     events = dict()
     dayObject.update(events)
 
-    json.dumps(dayObject, file)
+    json.dump(dayObject, file)
 
     file.flush()
     file.close()
     pass
+
+
 
 def SaveEvents(events: list[Event]):
     """Saves the list of events to their corresponding files"""
