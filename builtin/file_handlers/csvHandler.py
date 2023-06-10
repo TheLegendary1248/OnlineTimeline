@@ -1,8 +1,10 @@
+"This module handles CSV files"
 import csv
 import sys
 import os
 from pathlib import Path
 from pprint import pprint
+import argparse
 
 if __name__ == '__main__':
     # Make sure import works
@@ -12,7 +14,7 @@ if __name__ == '__main__':
 from plugin import FileHandlerBase
 from TimelineManager import Event
 
-defaultDialect = csv.Dialect()
+#defaultDialect = csv.Dialect()
 
 class BuiltinCSVHandler(FileHandlerBase):
     """The builtin handler for CSV files"""
@@ -23,25 +25,20 @@ class BuiltinCSVHandler(FileHandlerBase):
 
     def LoadConfig(config: dict) -> None:
         super().LoadConfig()
-        if "firstField" in config:
-            self.firstField = config["firstField"]
-        if self.firstField != "use": 
-            self.fields = config["fields"]
+        self.config = config
 
     def CreateEvents() -> None:
-        
+        events = []
 
         pass
 
-##Use the second argument as target file, and third argument as target config 
 if  __name__ == '__main__':
-    with open(sys.argv[1], newline='') as csvfile:
-        reader = csv.reader(csvfile, delimiter=',', quotechar='|')
-        if 'ID' in reader:
-            pass
-
-        for row in reader:
-            event = Event()
-            print(', '.join(row))
-    
-
+    #Setup cmd line parsing
+    parser = argparse.ArgumentParser(description=__doc__)
+    #Input file
+    parser.add_argument('f', help="The path to the input csv file")
+    #Input config (if not the default dialect)
+    parser.add_argument('-c', help="The path to the input config json")
+    #Output file
+    parser.add_argument('-o')
+    parser.parse_args()

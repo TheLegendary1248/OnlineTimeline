@@ -3,7 +3,8 @@ import globals
 from pathlib import Path
 import json
 import os
-import datetime
+from datetime import datetime
+import argparse
 
 savePath = Path(globals.CONFIG["SaveLocation"])
 
@@ -14,10 +15,10 @@ objectsPath = savePath / "objects"
 
 class Event:
     """Represents a data point, or that sorta of thing"""
-    def __init__(self, id, timestamp, content) -> None:
+    def __init__(self, id, timestamp, data) -> None:
         self.timestamp = timestamp
         """The time at which this event happened"""
-        self.content = content
+        self.data = data
         """The content regarding this event"""
         self.id = id
         """The unique id for this event"""
@@ -27,14 +28,32 @@ class Event:
             self.id :
             {
                 "time" : self.timestamp,
-                "data" : self.content,
+                "data" : self.data,
             }
         }
         return obj
 
-def AppendDay(date: datetime.datetime):
-    """Appends onto the day file"""
-    fileDayPath = timelinePath / f"{date.year}/{date.month}/{date.day}.json"
+def AppendEvents(events: list[Event], medianame="unknown"):
+    """Write events into their corresponding day files"""
+    ##Sort events
+    def GetTS(event: Event):
+        return event.timestamp
+    epoch = datetime.utcfromtimestamp(0)
+    daysFromEpoch = epoch - epoch
+    events.sort(False, GetTS)
+    for i in events:
+        #Get days from events
+        #If difference, flush current file and flush to next
+
+        pass
+    ##Iterate per day, open file, make dictionary union, and write back
+
+    with open('myfile.json' , 'r+') as f:
+        d = json.load(f)
+        d.update(mydict)
+        f.seek(0)
+        json.dump(d, f)
+    ##fileDayPath = timelinePath / f"{date.year}/{date.month}/{date.day}.json"
     EnsurePath(fileDayPath)
     file = fileDayPath.open("w")
     #Get day as an object
@@ -47,7 +66,6 @@ def AppendDay(date: datetime.datetime):
     file.flush()
     file.close()
     pass
-
 
 
 def SaveEvents(events: list[Event]):
@@ -68,4 +86,3 @@ def EnsurePath(path: Path):
             path.mkdir(parents=True, exist_ok=True)
         else:
             path.parent.mkdir(parents=True, exist_ok=True)
-AppendDay(datetime.datetime.now())

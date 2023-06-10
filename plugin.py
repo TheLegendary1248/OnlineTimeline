@@ -7,7 +7,8 @@ import os
 import globals
 from pprint import pprint
 from configparser import ConfigParser
-
+import argparse
+import sys
 
 class Plugin:
     loadedPlugins: list[Plugin] = [] 
@@ -60,10 +61,10 @@ def DetectFolderMedia():
     for i in os.listdir(globals.CONFIG["DataLocation"]):
         pprint(Plugin.loadedPlugins[0].mediaNameMatch.GetFolderMedia(i))
 
-Plugin.ReloadPlugins()
+
 
 class FileHandlerBase():
-    """Base class for all file extension handlers"""
+    """Base class for all file type handlers that """
     def __init__(self, config=dict) -> None:
         pass
     def HandleFile():
@@ -73,7 +74,9 @@ class FileHandlerBase():
         """Loads the configuration for this handler"""
         pass
 
+Plugin.ReloadPlugins()
 #Process command line arguments for function testing
 if __name__ == '__main__':
-    print("This file isn't setup to run commands")
-    exit()
+    print('Still not designed to handle arguments')
+        
+    

@@ -1,11 +1,10 @@
 {
     "fileExt": "csv",
     "config" : {
-        "firstField" : "skip",
-        "fields" : ["ID","Timestamp","Contents","Attachments"],
-        "pythonCSVConfig" : {
-            "delimiter": ","
-        },
-        "id" : {}
+        "reader_params":{}
+        
+    },
+    "event_config":{
+
     }
 }
