@@ -9,6 +9,7 @@ from pprint import pprint
 from configparser import ConfigParser
 import argparse
 import sys
+import json
 
 class Plugin:
     loadedPlugins: list[Plugin] = [] 
@@ -65,13 +66,17 @@ def DetectFolderMedia():
 
 class FileHandlerBase():
     """Base class for all file type handlers that """
-    def __init__(self, config=dict) -> None:
+    def __init__(self, config: dict=None) -> None:
+        if config != None:
+            self.LoadConfig(config)
         pass
     def HandleFile():
         """"""
         pass
-    def LoadConfig(config: dict) -> None:
+    def LoadConfig(self, config: dict) -> None:
         """Loads the configuration for this handler"""
+        #Ensure type here
+        self.config = json.load(config)
         pass
 
 Plugin.ReloadPlugins()

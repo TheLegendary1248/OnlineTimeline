@@ -1,3 +1,35 @@
 {
-    
+    "fileExt": "csv",
+    "config": {
+        "expectedHeader": [
+            "City",
+            "Product Type",
+            "Trip or Order Status",
+            "Request Time",
+            "Begin Trip Time",
+            "Begin Trip Lat",
+            "Begin Trip Lng",
+            "Begin Trip Address",
+            "Dropoff Time",
+            "Dropoff Lat",
+            "Dropoff Lng",
+            "Dropoff Address",
+            "Distance (miles)",
+            "Fare Amount",
+            "Fare Currency"]
+    },
+    "otherconfig": {
+        "convert": [
+            {
+                "id": "time_parse",
+                "fieldGet": {
+                    "Request Time|Begin Trip Time|Dropoff Time": {
+                        "isRegex": true
+                    }
+                },
+                "parser_params": {}
+            },
+            {}
+        ]
+    }
 }
