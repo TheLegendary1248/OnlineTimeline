@@ -1,4 +1,5 @@
 {
+    "$schema": "../../../json_schemas/folderStructureSchema.json",
     "messages": {
         "isFile": false,
         "desc": "This folder is known to contain all of your messages sent in servers and DM's",

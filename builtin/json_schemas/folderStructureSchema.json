@@ -1,0 +1,35 @@
+{
+    "type": "object",
+    "description": "This is the main object",
+    "patternProperties": {
+        "^.*$": {
+            "type": "object",
+            "description": "Name of a path segment",
+            "properties": {
+                "isRegex": {
+                    "type": "boolean",
+                    "description": "Is the given key to this object Regex string?"
+                },
+                "isFile": {
+                    "type": "boolean",
+                    "description": "Is this path a file?"
+                },
+                "desc" : {
+                    "type": "string",
+                    "description": "Description of this path segment"
+                },
+                "data": {
+                    "type": "object",
+                    "description": "Defines objects for further down the tree",
+                    "patternProperties" : {
+                        "^.*$": { "$ref" : "#/patternProperties/^.*$" }
+                    }
+                },
+                "reader_config" : {
+                    "type" : "string",
+                    "description" : "Name of the .json file that is used for configuring the program on how to read this file/folder"
+                }
+            }
+        }
+    }
+}

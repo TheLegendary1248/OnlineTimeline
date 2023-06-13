@@ -1,4 +1,5 @@
 {
+
     "fileExt": "csv",
     "config": {
         "expectedHeader": [
@@ -31,5 +32,6 @@
             },
             {}
         ]
-    }
+    },
+    "id" : "Request Time"
 }

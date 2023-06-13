@@ -31,8 +31,8 @@ class BuiltinCSVHandler(FileHandlerBase):
 
     def CreateEvents(self, file: TextIOWrapper) -> None:
         csvreader = csv.DictReader(file)
-        print(csvreader.fieldnames)
-        print(self.config)
+        pprint(csvreader.fieldnames)
+        pprint(self.config)
         for row in csvreader:
             #print(row)
             pass
