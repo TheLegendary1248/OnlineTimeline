@@ -10,6 +10,8 @@ from configparser import ConfigParser
 import argparse
 import sys
 import json
+from typing import TypedDict, Any
+#TODO Figure out if to use jsonschema and how
 
 class Plugin:
     loadedPlugins: list[Plugin] = [] 
@@ -62,7 +64,9 @@ def DetectFolderMedia():
     for i in os.listdir(globals.CONFIG["DataLocation"]):
         pprint(Plugin.loadedPlugins[0].mediaNameMatch.GetFolderMedia(i))
 
-
+class HandlerConfigBase(TypedDict):
+    config: Any
+    """The config for the"""
 
 class FileHandlerBase():
     """Base class for all file type handlers that """

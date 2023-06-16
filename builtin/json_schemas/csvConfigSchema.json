@@ -1,0 +1,16 @@
+{
+    "type": "object",
+    "description": "This is the main object", 
+    "properties" : {
+        "config": 
+        {
+            "description" : "The configuration for this file reader",
+            "properties" : {
+                "expectedHeader" : {
+                    "description" : "An array of strings that the first line in the csv should match"
+                }
+            }
+        }
+    }
+    
+}

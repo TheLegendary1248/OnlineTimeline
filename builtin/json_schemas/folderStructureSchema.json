@@ -12,7 +12,7 @@
                 },
                 "isFile": {
                     "type": "boolean",
-                    "description": "Is this path a file?"
+                    "description": "Does this path point to a file?"
                 },
                 "desc" : {
                     "type": "string",
@@ -27,7 +27,8 @@
                 },
                 "reader_config" : {
                     "type" : "string",
-                    "description" : "Name of the .json file that is used for configuring the program on how to read this file/folder"
+                    "description" : "Name of the .json file that is used for configuring the program on how to read this file/folder",
+                    "markdownDescription" : "Name of the `.json` file that is used for configuring the program on how to read this file/folder"
                 }
             }
         }

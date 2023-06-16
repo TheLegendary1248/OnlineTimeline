@@ -1,6 +1,5 @@
 {
-
-    "fileExt": "csv",
+    "$schema": "../../../json_schemas/csvConfigSchema.json",
     "config": {
         "expectedHeader": [
             "City",
@@ -17,7 +16,13 @@
             "Dropoff Address",
             "Distance (miles)",
             "Fare Amount",
-            "Fare Currency"]
+            "Fare Currency"
+        ],
+        "functionParams": {
+            "named": {},
+            "args": {},
+            "kwargs": {}
+        }
     },
     "otherconfig": {
         "convert": [
@@ -33,5 +38,7 @@
             {}
         ]
     },
-    "id" : "Request Time"
+    "eventconfig": {
+        "time": "Request Time"
+    }
 }

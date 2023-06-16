@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 from pprint import pprint
 import argparse
+from typing import TypedDict
 
 if __name__ == '__main__':
     # Make sure import works
@@ -16,6 +17,9 @@ from plugin import FileHandlerBase
 from TimelineManager import Event
 
 #defaultDialect = csv.Dialect()
+
+class CSVConfig(TypedDict):
+    config: dict
 
 #TODO Use 'expected' header to certify csv header
 
@@ -28,14 +32,22 @@ class BuiltinCSVHandler(FileHandlerBase):
     def LoadConfig(self, config: TextIOWrapper) -> None:
         super().LoadConfig(config)
         
-
+    def VerifyHeader(self):
+        """Verifies the expected header field from config"""
+        expectedHeader = self.config["config"]["expectHeader"]
+        if isinstance(expectedHeader, list):
+            if not all([val in self.csvreader.fieldnames for val in expectedHeader]):
+                raise BaseException(f"Expected header does not match that found in {self.csvreader}")
+        else:
+            print("No given header for verification")
+        
     def CreateEvents(self, file: TextIOWrapper) -> None:
-        csvreader = csv.DictReader(file)
-        pprint(csvreader.fieldnames)
-        pprint(self.config)
-        for row in csvreader:
-            #print(row)
+        self.csvreader = csv.DictReader(file)
+        eventArr = []
+        for row in self.csvreader:    
+            eventArr.append(Event(timestamp=row["Request Time"],data=row))
             pass
+        pprint(eventArr)
 
 if  __name__ == '__main__':
     #Setup cmd line parsing
