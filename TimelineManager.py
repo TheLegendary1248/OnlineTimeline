@@ -39,10 +39,12 @@ class Event:
         ##Sort events by time
         def GetTS(event: Event):
             return event.timestamp
+        
         epoch = datetime.utcfromtimestamp(0)
         daysFromEpoch = 0
-        events.sort(False, GetTS)
+        events.sort(key=GetTS)
         allEventsInDay:list[Event] = []
+
         for event in events:
             eventDaysFromEpoch = epoch - event
             #Day difference checker, for file purposes 
@@ -57,8 +59,8 @@ class Event:
             mediaObj = {
                 medianame : eventsAsDict
             }
+            continue
             #If difference, flush current file and flush to next
-            path
             with open('DAY.json', 'r+') as f:
                 dayData = json.load(f)
                 dayData.update(mydict)
@@ -68,10 +70,8 @@ class Event:
             allEventsInDay.clear()
             allEventsInDay.append(event)
             pass
-        ##Iterate per day, open file, make dictionary union, and write back
 
-        
-            
+        return
         fileDayPath = timelinePath / f"{date.year}/{date.month}/{date.day}.json"
         EnsurePath(fileDayPath)
         pass

@@ -18,27 +18,20 @@
             "Fare Amount",
             "Fare Currency"
         ],
+        "conversions": {
+            "Fare Amount": "number",
+            "Request Time|Dropoff Time" : {
+                "isRegex": "true",
+                "type" : "time",
+                "args" : { "format" : "" }
+            }
+        },
+        "timestamp" : "Request Time",
+        "id" : "Request Time",
         "functionParams": {
             "named": {},
             "args": {},
             "kwargs": {}
         }
-    },
-    "otherconfig": {
-        "convert": [
-            {
-                "id": "time_parse",
-                "fieldGet": {
-                    "Request Time|Begin Trip Time|Dropoff Time": {
-                        "isRegex": true
-                    }
-                },
-                "parser_params": {}
-            },
-            {}
-        ]
-    },
-    "eventconfig": {
-        "time": "Request Time"
     }
 }

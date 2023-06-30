@@ -43,11 +43,11 @@ class BuiltinCSVHandler(FileHandlerBase):
         
     def CreateEvents(self, file: TextIOWrapper) -> None:
         self.csvreader = csv.DictReader(file)
-        eventArr = []
+        self.eventArr = []
         for row in self.csvreader:    
-            eventArr.append(Event(timestamp=row["Request Time"],data=row))
+            self.eventArr.append(Event(timestamp=row["Request Time"],data=row))
             pass
-        pprint(eventArr)
+        pprint(self.eventArr)
 
 if  __name__ == '__main__':
     #Setup cmd line parsing
@@ -70,4 +70,6 @@ if  __name__ == '__main__':
         handler.LoadConfig(arguments.config)
     #Run logic
     handler.CreateEvents(arguments.file)
+    
+    Event.AppendEvents(handler.eventArr, "Uber")
     
