@@ -1,6 +1,5 @@
-import sys
-
 '''
+import sys
 import typing
 
 from PyQt6 import QtCore
@@ -30,10 +29,16 @@ class Tee:
 
 
 if __name__ == '__main__':
+    import sys
+    # Try core
+        
 
-    
+    # Then try a GUI
+
+
+    """ 
     app = QApplication(sys.argv)
     app.setStyle('Fusion')
     ex = App()
     sys.exit(app.exec())
-
+ """
