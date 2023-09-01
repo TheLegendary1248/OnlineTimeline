@@ -51,7 +51,6 @@ class MyTableWidget(QWidget):
         
         # Create first tab
         self.tab1.layout = QVBoxLayout()
-        self.pushButton1 = Da
         self.tab1.layout.addWidget(self.pushButton1)
         self.tab1.setLayout(self.tab1.layout)
         

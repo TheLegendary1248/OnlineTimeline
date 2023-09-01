@@ -1,10 +1,12 @@
 import sys
+
+'''
 import typing
 
 from PyQt6 import QtCore
 import globals
 from GUI import App
-from PyQt6.QtWidgets import QApplication
+from PyQt6.QtWidgets import QApplication'''
 
 ''' Code for later
 import sys
@@ -28,6 +30,8 @@ class Tee:
 
 
 if __name__ == '__main__':
+
+    
     app = QApplication(sys.argv)
     app.setStyle('Fusion')
     ex = App()
