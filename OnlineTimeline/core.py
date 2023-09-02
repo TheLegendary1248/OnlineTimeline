@@ -26,16 +26,16 @@ class Tee:
         self.buffer.flush()
         '''
 
-
+import importlib
 
 if __name__ == '__main__':
     import sys
     # Try core
-        
+    import plugin
+    print(plugin.__doc__)
+    # print(importlib.import_module('test').__doc__)
 
     # Then try a GUI
-
-
     """ 
     app = QApplication(sys.argv)
     app.setStyle('Fusion')

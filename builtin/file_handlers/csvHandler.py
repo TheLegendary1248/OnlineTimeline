@@ -13,9 +13,7 @@ if __name__ == '__main__':
     sys.path.append(str(Path.cwd()))
     print("Running CSV Handler as main")
 
-from plugin import FileHandlerBase
-from TimelineManager import Event
-
+from OnlineTimeline.plugin import FileHandlerBase
 #defaultDialect = csv.Dialect()
 
 class CSVConfig(TypedDict):
