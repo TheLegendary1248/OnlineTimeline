@@ -1,12 +1,10 @@
 from __future__ import annotations
 
 ## This file deals with
-import globals
+from OnlineTimeline import globals 
 from pathlib import Path
 import json
-import os
 from datetime import datetime
-import argparse
 
 savePath = Path(globals.CONFIG["SaveLocation"])
 

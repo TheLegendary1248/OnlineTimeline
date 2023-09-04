@@ -3,12 +3,12 @@ from __future__ import annotations
 
 from pathlib import Path 
 import os
-import globals
+from OnlineTimeline import globals
+
 from pprint import pprint
 
 import argparse
-from typing import TypedDict, Any
-from plugin import MediaHandler, FileHandlerBase
+from OnlineTimeline.plugin import MediaHandler, FileHandlerBase
 #TODO Figure out if to use jsonschema and how
 
 print("Plugin loaded")

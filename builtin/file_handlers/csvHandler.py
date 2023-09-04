@@ -10,10 +10,12 @@ from typing import TypedDict
 
 if __name__ == '__main__':
     # Make sure import works
-    sys.path.append(str(Path.cwd()))
+    # sys.path.append(str(Path.cwd()))
+    pprint(sys.path)
     print("Running CSV Handler as main")
 
-from OnlineTimeline.plugin import FileHandlerBase
+from OnlineTimeline.plugin.FileHandlerBase import FileHandlerBase
+from OnlineTimeline.TimelineManager import Event
 #defaultDialect = csv.Dialect()
 
 class CSVConfig(TypedDict):
@@ -69,5 +71,4 @@ if  __name__ == '__main__':
     #Run logic
     handler.CreateEvents(arguments.file)
     
-    Event.AppendEvents(handler.eventArr, "Uber")
     
