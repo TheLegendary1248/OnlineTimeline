@@ -16,7 +16,6 @@ if __name__ == '__main__':
 
 from OnlineTimeline.plugin.FileHandlerBase import FileHandlerBase
 from OnlineTimeline.TimelineManager import Event
-print('after, yes?')
 #defaultDialect = csv.Dialect()
 
 class CSVConfig(TypedDict):
@@ -45,9 +44,11 @@ class BuiltinCSVHandler(FileHandlerBase):
     def CreateEvents(self, file: TextIOWrapper) -> None:
         self.csvreader = csv.DictReader(file)
         self.eventArr: list[Event] = []
-
+        for row in self.csvreader: 
+            self.eventArr.append(Event(timestamp=row["Request Time"],data=row))
+            pass
         for event in self.eventArr:
-            pprint(event)
+            pprint(event.timestamp)
 
 if  __name__ == '__main__':
     handler = BuiltinCSVHandler()
