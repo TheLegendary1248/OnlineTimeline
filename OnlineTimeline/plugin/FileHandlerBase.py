@@ -32,5 +32,5 @@ class FileHandlerBase:
     def LoadConfig(self, config: dict) -> None:
         """Loads the configuration for this handler"""
         #Ensure type here
-        self.config = json.load(config)
+        self.config["config"] = json.load(config)
         pass

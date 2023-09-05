@@ -23,7 +23,17 @@
             "Request Time|Dropoff Time" : {
                 "isRegex": "true",
                 "type" : "time",
-                "args" : { "format" : "" }
+                "config" : { "format" : "" }
+            },
+            "Trip or Order Status" : {
+                "type" : "enum",
+                "config" : 
+                {
+                    "values" : {
+                        "COMPLETED" : 1,
+                        "CANCELLED" : 0
+                    }
+                }
             }
         },
         "timestamp" : "Request Time",

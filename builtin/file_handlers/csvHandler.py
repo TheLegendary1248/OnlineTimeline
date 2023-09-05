@@ -34,7 +34,7 @@ class BuiltinCSVHandler(FileHandlerBase):
         
     def VerifyHeader(self):
         """Verifies the expected header field from config"""
-        expectedHeader = self.config["config"]["expectHeader"]
+        expectedHeader = self.config["expectedHeader"]
         if isinstance(expectedHeader, list):
             if not all([val in self.csvreader.fieldnames for val in expectedHeader]):
                 raise BaseException(f"Expected header does not match that found in {self.csvreader}")
@@ -45,10 +45,13 @@ class BuiltinCSVHandler(FileHandlerBase):
         self.csvreader = csv.DictReader(file)
         self.eventArr: list[Event] = []
         for row in self.csvreader: 
+            for i in range(0):
+                pass
+                # Run conversions
             self.eventArr.append(Event(timestamp=row["Request Time"],data=row))
             pass
         for event in self.eventArr:
-            pprint(event.timestamp)
+            print(str(event.data))
 
 if  __name__ == '__main__':
     handler = BuiltinCSVHandler()
