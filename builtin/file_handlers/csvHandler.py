@@ -16,6 +16,7 @@ if __name__ == '__main__':
 
 from OnlineTimeline.plugin.FileHandlerBase import FileHandlerBase
 from OnlineTimeline.TimelineManager import Event
+print('after, yes?')
 #defaultDialect = csv.Dialect()
 
 class CSVConfig(TypedDict):
@@ -43,32 +44,14 @@ class BuiltinCSVHandler(FileHandlerBase):
         
     def CreateEvents(self, file: TextIOWrapper) -> None:
         self.csvreader = csv.DictReader(file)
-        self.eventArr = []
-        for row in self.csvreader:    
-            self.eventArr.append(Event(timestamp=row["Request Time"],data=row))
-            pass
-        pprint(self.eventArr)
+        self.eventArr: list[Event] = []
+
+        for event in self.eventArr:
+            pprint(event)
 
 if  __name__ == '__main__':
-    #Setup cmd line parsing
-    parser = argparse.ArgumentParser(description=__doc__)
-    #Input file
-    parser.add_argument('file', type=open,help="The path to the input csv file")
-    #Input config (if not the default dialect)
-    parser.add_argument('-config', type=open,help="The path to the input config json")
-    #Output file
-    parser.add_argument('-output', help="The output file")
-    #Output limit
-    parser.add_argument('-limit',type=int)
-    #If send to timeline
-    arguments = parser.parse_args()
-    #Create handler instance
     handler = BuiltinCSVHandler()
+    handler.UseCmdArguments()
     
-    ##INSERT OPTIONALS HERE
-    if arguments.config != None:
-        handler.LoadConfig(arguments.config)
-    #Run logic
-    handler.CreateEvents(arguments.file)
     
     

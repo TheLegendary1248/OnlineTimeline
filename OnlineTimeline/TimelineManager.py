@@ -23,6 +23,8 @@ class Event:
         """The content regarding this event"""
         self.id: str = id
         """The unique id for this event. If one is not given, timestamp is used instead"""
+
+    
     def toDict(self) -> dict:
         """Converts the Event into it's appropiate JSON object"""
         obj = {
