@@ -25,7 +25,7 @@ class Tee:
         self.stdout.flush()
         self.buffer.flush()
         '''
-
+print('core imported')
 import importlib
 
 if __name__ == '__main__':

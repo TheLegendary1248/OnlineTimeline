@@ -8,6 +8,8 @@ class ValueConverter():
     def ConvertValue(self, val) -> None:
         pass
 
+# TODO: Create static function for getting all subclasses via https://stackoverflow.com/questions/3862310/how-to-find-all-the-subclasses-of-a-class-given-its-name
+
 class TimeConverter(ValueConverter):
     def ConvertValue(self, val) -> None:
         return
