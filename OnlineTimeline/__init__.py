@@ -1,9 +1,8 @@
-# Load up essentials
-print('Hmm, yet?')
-# Launch WebUI
-import WebGUI
-# Ensure front end works
+# Prepare to do things async
+import asyncio
+import time
 
-# Begin background task of loading plugins
-import core
-import builtin.file_handlers.csvHandler
+
+if __name__ == "__main__":
+    print('Running OT init')
+    pass

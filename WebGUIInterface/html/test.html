@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="/webui.js" defer></script>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <link href="../css/main.css" rel="stylesheet">
+    </head>
+    <body style="background-color: #022; height: 800px;">
+        <p>Hello World!</p>
+        <div id="app">{{ message }}</div>
+    </body>
+    <script>
+        const { createApp } = Vue
+      
+        createApp({
+          data() {
+            return {
+              message: 'Hello Vue!'
+            }
+          }
+        }).mount('#app')
+      </script>
+</html>

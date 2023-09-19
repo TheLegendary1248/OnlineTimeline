@@ -25,15 +25,19 @@ class Tee:
         self.stdout.flush()
         self.buffer.flush()
         '''
-print('core imported')
-import importlib
 
-if __name__ == '__main__':
+import importlib
+import asyncio
+async def main():
     import sys
     # Try core
     import plugin
     print(plugin.__doc__)
     # print(importlib.import_module('test').__doc__)
+
+if __name__ == '__main__':
+    asyncio.run(main())
+    
 
     # Then try a GUI
     """ 
