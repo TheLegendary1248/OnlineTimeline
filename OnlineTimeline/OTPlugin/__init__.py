@@ -22,14 +22,17 @@ class Plugin:
         #Do condition tests
         if not pathstr.is_dir():
             raise BaseException("Plugin folder is not a folder")
-        print(f'Got plugin at {pathstr}')
+        print(f'Got plugin at {pathstr.absolute()}')
         self.fileHandlers = None
         self.mediaNameMatch = MediaHandler.MediaHandler(pathstr / "media_name_match.ini")
     @classmethod
     def ReloadPlugins(self) -> None:
         """Reload plugins, at both the plugin folder and set external plugin folder"""
-        self.loadedPlugins.append(Plugin(Path("builtin")))
-        #Test regex match
+        self.loadedPlugins.append(Plugin(Path("builtin_plugins/default")))
+        
+    def ReloadThisPlugin(self) -> None:
+        raise NotImplementedError()
+
 
 def DetectFolderMedia():
     """Detects the media that a folder belongs to"""
@@ -45,7 +48,7 @@ def ReloadPlugins():
 if __name__ == '__main__':
     print(sys.argv)
     if len(sys.argv) == 1:
-        print("No arguments givens. Just test loading of plugins")
+        print("No arguments were given. Testing loading of plugins")
         ReloadPlugins()
         os._exit(0)
         # Plugin.ReloadPlugins()
@@ -64,14 +67,7 @@ if __name__ == '__main__':
     #If send to timeline
     arguments = parser.parse_args()
     #Create handler instance
-    # handler = BuiltinCSVHandler()
     
-    ##INSERT OPTIONALS HERE
-    if arguments.config != None:
-        handler.LoadConfig(arguments.config)
-    #Run logic
-    handler.CreateEvents(arguments.file)
     
-    Event.AppendEvents(handler.eventArr, "Uber")
         
     
