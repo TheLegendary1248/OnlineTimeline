@@ -5,11 +5,11 @@ print("Hey, is this supposed to run?")
 
 # Launch WebUI
 import WebGUIInterface as GUI
-
+import OTPlugin
 
 
 async def runTillTheEnd():
-    import core
+    OTPlugin.ReloadPlugins()
     while True:
         await asyncio.sleep(0)
         print(f"GUI is still running at {time.time()}")
@@ -17,6 +17,7 @@ async def runTillTheEnd():
             break
 
 async def main():
+    
     input_tasks = [
         asyncio.create_task(GUI.main()),
         asyncio.create_task(runTillTheEnd())]

@@ -5,11 +5,14 @@ from pathlib import Path
 import os
 from OnlineTimeline import globals
 
+import sys
 from pprint import pprint
 
 import argparse
-from OnlineTimeline.plugin import MediaHandler, FileHandlerBase
+from OnlineTimeline.OTPlugin import MediaHandler, FileHandlerBase
 #TODO Figure out if to use jsonschema and how
+
+
 
 print("Plugin loaded")
 class Plugin:
@@ -21,7 +24,7 @@ class Plugin:
             raise BaseException("Plugin folder is not a folder")
         print(f'Got plugin at {pathstr}')
         self.fileHandlers = None
-        self.mediaNameMatch = MediaHandler(pathstr / "media_name_match.ini")
+        self.mediaNameMatch = MediaHandler.MediaHandler(pathstr / "media_name_match.ini")
     @classmethod
     def ReloadPlugins(self) -> None:
         """Reload plugins, at both the plugin folder and set external plugin folder"""
@@ -34,11 +37,20 @@ def DetectFolderMedia():
         pprint(Plugin.loadedPlugins[0].mediaNameMatch.GetFolderMedia(i))
 
 
+def ReloadPlugins():
+    Plugin.ReloadPlugins()
+
 ##Plugin.ReloadPlugins()
 #Process command line arguments for function testing
 if __name__ == '__main__':
-    print('plugin cannot run on its own')
-    os._exit(0)
+    print(sys.argv)
+    if len(sys.argv) == 1:
+        print("No arguments givens. Just test loading of plugins")
+        ReloadPlugins()
+        os._exit(0)
+        # Plugin.ReloadPlugins()
+    # print('plugin cannot run on its own')
+    # os._exit(0)
     #Setup cmd line parsing
     parser = argparse.ArgumentParser(description=__doc__)
     #Input file
@@ -52,7 +64,7 @@ if __name__ == '__main__':
     #If send to timeline
     arguments = parser.parse_args()
     #Create handler instance
-    handler = BuiltinCSVHandler()
+    # handler = BuiltinCSVHandler()
     
     ##INSERT OPTIONALS HERE
     if arguments.config != None:
