@@ -8,13 +8,12 @@ from pprint import pprint
 import argparse
 from typing import TypedDict
 
-print('Hello, from CSVHandler')
 if __name__ == '__main__':
     # Make sure import works
     # sys.path.append(str(Path.cwd())
     print("Running CSV Handler as main")
 
-from OnlineTimeline.plugin.FileHandlerBase import FileHandlerBase
+from OnlineTimeline.OTPlugin.FileHandlerBase import FileHandlerBase
 from OnlineTimeline.TimelineManager import Event
 #defaultDialect = csv.Dialect()
 
