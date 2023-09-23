@@ -1,3 +1,5 @@
+"""The core of OnlineTimeline"""
+
 # Prepare to do things async
 import asyncio
 import time

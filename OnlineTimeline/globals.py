@@ -1,4 +1,5 @@
 #This python file is in charge of the settings file
+"""Global variables for the whole program"""
 import json
 from pathlib import Path
 
