@@ -1,6 +1,7 @@
 import json
 import argparse
 from pprint import pprint
+import sys
 from OnlineTimeline.OTPlugin.Config import ConfigRoot
 class FileHandlerBase:
     """Base class for all file type handlers that"""
@@ -13,6 +14,8 @@ class FileHandlerBase:
         """Use command arguments, usually for testing the handler separate of the program"""
         #Setup cmd line parsing
         parser = argparse.ArgumentParser(description=__doc__)
+
+        
         #Input file
         parser.add_argument('-file', type=open,help="The path to the input file")
         #Input config (if not the default dialect)
@@ -23,9 +26,13 @@ class FileHandlerBase:
         parser.add_argument('-limit',type=int)
         #If send to timeline
         arguments = parser.parse_args()
+        # Count how many arguments have a non-None value
+        argCount = [v != None for v in vars(arguments).values()].count(True)
+        onlyOneArg = argCount == 1
         #Create handler instance
         if arguments.config != None:
             self.LoadConfig(arguments.config)
+            if onlyOneArg: pprint(f"Only configuration given:\n{self.config}")
         #Run logic
         # data = self.CreateEvents(arguments.file)
 
