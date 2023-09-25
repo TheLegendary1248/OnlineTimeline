@@ -1,11 +1,10 @@
 import json
 import argparse
 from pprint import pprint
-
+from OnlineTimeline.OTPlugin.Config import ConfigRoot
 class FileHandlerBase:
-    """Base class for all file type handlers that """
+    """Base class for all file type handlers that"""
     def __init__(self, config: dict=None) -> None:
-        "Hello?"
         self.config = dict()
         if config != None:
             self.LoadConfig(config)
@@ -24,8 +23,6 @@ class FileHandlerBase:
         parser.add_argument('-limit',type=int)
         #If send to timeline
         arguments = parser.parse_args()
-
-        pprint(arguments)
         #Create handler instance
         if arguments.config != None:
             self.LoadConfig(arguments.config)
@@ -42,7 +39,7 @@ class FileHandlerBase:
         pass
     def LoadConfig(self, config: dict) -> None:
         """Loads the configuration for this handler"""
-        print(self.config)
         #Ensure type here
-        self.config["config"] = json.load(config)
+        self.config = json.load(config)
+        """Configuration of this file handler as a dictionary"""
         pass
