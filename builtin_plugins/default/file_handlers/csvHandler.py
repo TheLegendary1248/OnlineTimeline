@@ -26,7 +26,6 @@ class BuiltinCSVHandler(FileHandlerBase):
     """The builtin handler for CSV files"""
     def __init__(self) -> None:
         super().__init__()
-        self.config = None
 
     def LoadConfig(self, config: TextIOWrapper) -> None:
         super().LoadConfig(config)
@@ -49,8 +48,7 @@ class BuiltinCSVHandler(FileHandlerBase):
                 # Run conversions
             self.eventArr.append(Event(timestamp=row["Request Time"],data=row))
             pass
-        for event in self.eventArr:
-            print(str(event.data))
+        return self.eventArr
 
 if  __name__ == '__main__':
     handler = BuiltinCSVHandler()

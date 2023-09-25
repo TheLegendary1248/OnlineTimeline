@@ -12,7 +12,7 @@ timelinePath = savePath / "timeline"
 objectsPath = savePath / "objects"
 
 class Event:
-    """Represents a data point, or that sorta of thing"""
+    """Represents a data point at a given time for the user"""
     def __init__(self,timestamp:int, data:dict, id=None, end_timestamp=None) -> None:
         self.timestamp: int = timestamp
         """The UNIX time at which this event happened"""
@@ -23,8 +23,11 @@ class Event:
         """The content regarding this event"""
         self.id: str = id
         """The unique id for this event. If one is not given, timestamp is used instead"""
-    def __str__(self) -> str:
-        return f"Event {self.id} at {date.fromtimestamp(self.timestamp)}"
+    def __str__(self):
+        return f"Event {self.id} from {self.timestamp}"
+    
+    def __repr__(self):
+        return self.__str__()
     
     def toDict(self) -> dict:
         """Converts the Event into it's appropiate JSON object"""
