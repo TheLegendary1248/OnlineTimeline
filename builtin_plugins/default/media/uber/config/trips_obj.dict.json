@@ -1,0 +1,27 @@
+{
+    "conversions": {
+        "Fare Amount": "number",
+        "Request Time|Dropoff Time" : {
+            "isRegex": "true",
+            "type" : "time",
+            "config" : { "format" : "" }
+        },
+        "Trip or Order Status" : {
+            "type" : "enum",
+            "config" : 
+            {
+                "values" : {
+                    "COMPLETED" : 1,
+                    "CANCELLED" : 0
+                }
+            }
+        }
+    },
+    "timestamp" : "Request Time",
+    "id" : "Request Time",
+    "functionParams": {
+        "named": {},
+        "args": {},
+        "kwargs": {}
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "$schema": "../../../json_schemas/csvConfigSchema.json",
+    "config": {
+        "expectedHeader": [
+            "City",
+            "Product Type",
+            "Trip or Order Status",
+            "Request Time",
+            "Begin Trip Time",
+            "Begin Trip Lat",
+            "Begin Trip Lng",
+            "Begin Trip Address",
+            "Dropoff Time",
+            "Dropoff Lat",
+            "Dropoff Lng",
+            "Dropoff Address",
+            "Distance (miles)",
+            "Fare Amount",
+            "Fare Currency"
+        ]
+    }
+}

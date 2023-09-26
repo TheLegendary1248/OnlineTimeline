@@ -1,0 +1,28 @@
+{ 
+    "python.autoComplete.extraPaths": [
+        "./**"
+    ],
+    "python.analysis.extraPaths": [
+        "./**"
+    ],
+    "json.schemas": [
+        {
+            "fileMatch": [
+                "/*.csv.json"
+            ],
+            "url": "./builtin_plugins/default/json_schemas/csv_config_schema.json"
+        },
+        {
+            "fileMatch": [
+                "/*.fs.json"
+            ],
+            "url": "./builtin_plugins/default/json_schemas/folder_format_schema.json"
+        },
+        {
+            "fileMatch": [
+                "/*.dict.json"
+            ],
+            "url": "./builtin_plugins/default/json_schemas/python_dict_schema.json"
+        }
+    ]
+}

@@ -32,7 +32,7 @@ class FileHandlerBase:
         #Create handler instance
         if arguments.config != None:
             self.LoadConfig(arguments.config)
-            if onlyOneArg: pprint(f"Only configuration given:\n{self.config}")
+            if onlyOneArg: pprint(self.config)
         #Run logic
         # data = self.CreateEvents(arguments.file)
 
