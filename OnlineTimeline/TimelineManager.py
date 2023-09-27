@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 ## This file deals with
-from OnlineTimeline import globals 
+from OnlineTimeline import globals
+from OnlineTimeline.TimelineManager import EnsurePath
 from pathlib import Path
 import json
 from datetime import datetime, date
@@ -83,14 +84,3 @@ class Event:
 def GetExistingJSONObject():
     """Get the existing json object for said day"""
     pass
-
-def EnsurePath(path: Path):
-    """Get the file or folder at said path, or create one if not present"""
-    if path.exists():
-        pass
-    else:
-        ##Get path
-        if(path.is_dir()):
-            path.mkdir(parents=True, exist_ok=True)
-        else:
-            path.parent.mkdir(parents=True, exist_ok=True)

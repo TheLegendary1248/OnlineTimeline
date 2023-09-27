@@ -8,7 +8,7 @@ from typing import TypeVar, Generic, Type
 from pathlib import Path
 from datetime import datetime
 import pickle
-
+from OnlineTimeline.Utils import EnsurePath
 inputType = TypeVar('inputType')
 outputType = TypeVar('outputType')
 
@@ -55,9 +55,11 @@ class DataHandlerBase(Generic[inputType, outputType]):
             else:
                 # Default output function
                 now = datetime.now()
-                hashname = f"{self.__class__.__name__}.{now.date()}"
-                print("Output will be written to temp location at " + hashname)
-                with open("w", Path(CONFIG["OnlineTimelineCore"]["TempLocation"])/hashname) as file:
+                hashname = f"{self.__class__.__name__}.{now.date()}.pickle"
+                path = Path(CONFIG["OnlineTimelineCore"]["TempLocation"])/hashname
+                print("Output will be written to temp location at " + str(path))
+                EnsurePath(path)
+                with open(path, "wb") as file:
                     pickle.dump(data, file)
                     file.close()
 
