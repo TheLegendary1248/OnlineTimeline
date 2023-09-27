@@ -16,8 +16,13 @@
             },
             "Rider": {
                 "desc": "Information about your data as a Rider using Uber",
-                
-                "data": {}
+                "data": {
+                    "trips_data.csv" :
+                    {
+                        "isFile": true,
+                        "reader_config": "trips.csv.json"
+                    }
+                }
             },
             "readme.html": {
                 "desc": "A local HTML page that redirects you to information about your data at https://help.uber.com/riders/article/whats-in-your-data-download?nodeId=3d476006-87a4-4404-ac1e-216825414e05"

@@ -1,0 +1,19 @@
+{
+    "type": "object",
+    "properties": {
+        "eventData": {
+            "type": "object",
+            "description": "Conversion from the object to an Event",
+            "properties": {
+                "id": {
+                    "description": "The data that will be hashed together to form this event's id. They should be static, aka, never changing",
+                    "type" : "array"
+                },
+                "timestamp": {
+                    "description": "The field that contains exact time this event happened",
+                    "type" : "string"
+                }
+            }
+        }
+    }
+}

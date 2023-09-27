@@ -1,5 +1,5 @@
 {
-    "$schema": "../../../json_schemas/csvConfigSchema.json",
+    "$schema": "../../../json_schemas/csv_config_schema.json",
     "config": {
         "expectedHeader": [
             "City",
@@ -18,5 +18,6 @@
             "Fare Amount",
             "Fare Currency"
         ]
-    }
+    },
+    "output":"trips_obj.dict.json"
 }

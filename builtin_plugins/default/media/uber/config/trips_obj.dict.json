@@ -17,11 +17,13 @@
             }
         }
     },
-    "timestamp" : "Request Time",
-    "id" : "Request Time",
-    "functionParams": {
-        "named": {},
-        "args": {},
-        "kwargs": {}
+    "eventData" :
+    {
+        "timestamp" : "Request Time",
+        "id" : [
+            "Request Time",
+            "Begin Trip Lat",
+            "Begin Trip Lng"
+        ]
     }
 }

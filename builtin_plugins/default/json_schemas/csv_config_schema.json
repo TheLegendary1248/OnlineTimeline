@@ -7,13 +7,12 @@
             "description" : "The configuration for this file reader",
             "properties" : {
                 "expectedHeader" : {
-                    "description" : "An array of strings that the first line in the csv should match"
-                },
-                "conversions" : {
-                    "description" : "The conversion for each field"
+                    "description" : "An array of strings that the first line in the csv should match. Regex is not used here (yet)."
                 }
             }
+        },
+        "output": {
+            "description": "Config file for processing the output"
         }
     }
-    
 }
