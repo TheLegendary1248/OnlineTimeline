@@ -1,6 +1,10 @@
 {
     "type": "object",
     "properties": {
+        "conversions": {
+            "type": "object",
+            "description": "Conversions of the dictionary values "
+        },
         "eventData": {
             "type": "object",
             "description": "Conversion from the object to an Event",

@@ -24,7 +24,7 @@ settingFilePath = Path(VARS["ROOT_DIR"]) / settingFileName
 def WriteToSettings():
     """Simple function to write to settings file"""
     file = Path.open(settingFilePath, "w")
-    file.write(json.dumps(CONFIG))
+    json.dump(CONFIG, file, indent=4)
     file.flush()
     file.close()
 

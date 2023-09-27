@@ -23,35 +23,3 @@ class ObjectTraverse:
     ##
     pass
 
-class THINGY:
-    """This class should be an interface for object traversal"""
-    
-class ValueConverter:
-    """This class is for value conversions, usually for parsing strings"""
-    registered:dict = {}
-    def __init__(self) -> None:
-        pass
-    """An array of registered converters"""
-    
-    def convertValue(self, val, config):
-        pass
-    @staticmethod
-    def registerConverter(name: str,c: ValueConverter):
-        """Register a converter with a name"""
-        ValueConverter.registered[name] = c
-        pass
-
-    @staticmethod
-    def convertValue(name: str, val, config: dict):
-        """Convert the value with said config"""
-        converter = ValueConverter.registered[str]
-        
-        pass
-
-class TimeConverter(ValueConverter):
-    """Class """
-    def convertValue(self, val, config):
-        print("HEY")
-        pass
-
-ValueConverter.registerConverter("time", TimeConverter)
