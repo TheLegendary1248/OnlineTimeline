@@ -3,8 +3,14 @@ import argparse
 from pprint import pprint
 import sys
 from OnlineTimeline.OTPlugin.Config import ConfigRoot
-class FileHandlerBase:
-    """Base class for all file type handlers that"""
+from typing import TypeVar, Generic, Type
+
+inputType = TypeVar('inputType')
+outputType = TypeVar('outputType')
+
+
+class DataHandlerBase(Generic[inputType, outputType]):
+    """Base class for all data handlers"""
     def __init__(self, config: dict=None) -> None:
         self.config = dict()
         if config != None:
@@ -33,17 +39,15 @@ class FileHandlerBase:
         if arguments.config != None:
             self.LoadConfig(arguments.config)
             if onlyOneArg: pprint(self.config)
-        #Run logic
-        # data = self.CreateEvents(arguments.file)
 
-        # if arguments.output == None:
-        #     pprint(data)
+        if arguments.file != None:
+            if onlyOneArg: 
+                pprint(self.ProcessData(arguments.file))
 
-        from pathlib import Path
-
-    def HandleFile() -> dict:
-        """Parses content of the file into"""
+    def ProcessData(self, data: inputType) -> outputType:
+        """Process the data given"""
         pass
+
     def LoadConfig(self, config: dict) -> None:
         """Loads the configuration for this handler"""
         #Ensure type here

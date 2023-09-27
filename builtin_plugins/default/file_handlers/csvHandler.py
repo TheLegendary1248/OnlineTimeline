@@ -5,11 +5,11 @@ from io import TextIOWrapper
 from pathlib import Path
 from pprint import pprint
 
-from OnlineTimeline.OTPlugin.Config import ConfigRoot, FileReaderConfig
-from OnlineTimeline.OTPlugin.FileHandlerBase import FileHandlerBase
+from OnlineTimeline.OTPlugin.Config import ConfigRoot, DataHandlerConfig
+from OnlineTimeline.OTPlugin.DataHandlerBase import DataHandlerBase
 from OnlineTimeline.TimelineManager import Event
 
-class BuiltinCSVHandler(FileHandlerBase):
+class BuiltinCSVHandler(DataHandlerBase):
     """The builtin handler for CSV files"""
     def __init__(self) -> None:
         super().__init__()
@@ -28,22 +28,18 @@ class BuiltinCSVHandler(FileHandlerBase):
         else:
             print("No given header for verification")
         
-    def CreateEvents(self, file: TextIOWrapper) -> None:
-        self.csvreader = csv.DictReader(file)
-        self.eventArr: list[Event] = []
+    def ProcessData(self, data: TextIOWrapper) -> None:
+        self.csvreader = csv.DictReader(data)
+        self.dictArr: list[dict] = []
         for row in self.csvreader: 
-            for i in range(0):
-                pass
-                # Run conversions
-            self.eventArr.append(Event(timestamp=row["Request Time"],data=row))
-            pass
-        return self.eventArr
+            self.dictArr.append(row)
+        return self.dictArr
         
 
 
 
 
-class CSVConfigRoot(FileReaderConfig):
+class CSVConfigRoot(DataHandlerConfig):
     """Test Text"""
     def __init__(self, config: dict) -> None:
         self.config = config

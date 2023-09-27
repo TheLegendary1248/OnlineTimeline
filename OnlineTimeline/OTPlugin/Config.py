@@ -11,5 +11,5 @@ class ConfigRoot(Generic[configType]):
         self.config: configType = configType(config["config"])
         """Actual configuration for this file handler"""
 
-class FileReaderConfig():
+class DataHandlerConfig():
     pass
