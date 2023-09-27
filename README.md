@@ -1,3 +1,3 @@
-Future me has to write a README
+# OnlineTimeline
 
-If you're reading this in a non-historical commit, then that means I need to write the README...Open an Issue!
+#### OnlineTimeline is a personal project to view your digital footprint based off data that is available about you, whether it's your social media accounts, web browser, or personal computer.
