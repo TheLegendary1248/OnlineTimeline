@@ -8,9 +8,12 @@ VARS = {
     "BUILTIN_DIR" : str(Path.cwd() / "builtin")
 }
 """Contains global variables determined at run time"""
+
 CONFIG = {
-    "SaveLocation" : str(Path.cwd() / "usersaves"),
-    "DataLocation" : ""
+    "OnlineTimelineCore" : {
+        "SaveLocation" : str(Path.cwd() / "usersaves"),
+        "TempLocation" : str(Path.cwd() / "temp")
+    }
 }
 """Contains global variables"""
 

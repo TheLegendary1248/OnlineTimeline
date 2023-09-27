@@ -7,7 +7,6 @@ from pprint import pprint
 
 from OnlineTimeline.OTPlugin.Config import ConfigRoot, DataHandlerConfig
 from OnlineTimeline.OTPlugin.DataHandlerBase import DataHandlerBase
-from OnlineTimeline.TimelineManager import Event
 
 class BuiltinCSVHandler(DataHandlerBase):
     """The builtin handler for CSV files"""
@@ -20,7 +19,10 @@ class BuiltinCSVHandler(DataHandlerBase):
         
     def VerifyHeader(self):
         """Verifies the expected header field from config"""
-        expectedHeader = self.config["expectedHeader"]
+        expectedHeader = self.typedConfig.config.expectedHeader
+        if expectedHeader == None:
+            print("Config does not include Expected Header")
+            return
         if isinstance(expectedHeader, list):
             # Check that all values are in the Expected Header
             if not all([val in self.csvreader.fieldnames for val in expectedHeader]):
