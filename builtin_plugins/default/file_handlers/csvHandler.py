@@ -1,7 +1,7 @@
 "Builtin handler for CSV data. Outputs to dict"
 from __future__ import annotations
 import csv
-from io import TextIOWrapper
+from io import TextIOWrapper, IOBase
 from pathlib import Path
 from pprint import pprint
 
@@ -10,6 +10,7 @@ from OnlineTimeline.OTPlugin.DataHandlerBase import DataHandlerBase
 
 class BuiltinCSVHandler(DataHandlerBase):
     """The builtin handler for CSV files"""
+    readBinary = False
     def __init__(self) -> None:
         super().__init__()
         

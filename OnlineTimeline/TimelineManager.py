@@ -2,12 +2,12 @@ from __future__ import annotations
 
 ## This file deals with
 from OnlineTimeline import globals
-from OnlineTimeline.TimelineManager import EnsurePath
+from OnlineTimeline.Utils import EnsurePath
 from pathlib import Path
 import json
 from datetime import datetime, date
 
-savePath = Path(globals.CONFIG["SaveLocation"])
+savePath = Path(globals.CONFIG["OnlineTimelineCore"]["SaveLocation"])
 
 timelinePath = savePath / "timeline"
 objectsPath = savePath / "objects"

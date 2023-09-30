@@ -1,4 +1,4 @@
-"Builtin handler for CSV data. Outputs to dict"
+"Builtin handler for Python Dict Objects. Outputs to Event"
 from __future__ import annotations
 from io import TextIOWrapper
 from pathlib import Path

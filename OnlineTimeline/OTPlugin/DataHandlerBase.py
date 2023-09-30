@@ -2,7 +2,7 @@
 import json
 import argparse
 from pprint import pprint
-from io import TextIOWrapper
+from io import TextIOWrapper, IOBase
 # from OnlineTimeline.OTPlugin.Config import ConfigRoot
 from OnlineTimeline.globals import CONFIG
 from typing import TypeVar, Generic
@@ -16,6 +16,7 @@ outputType = TypeVar('outputType')
 
 class DataHandlerBase(Generic[inputType, outputType]):
     """Base class for all data handlers"""
+    readBinary = True
     def __init__(self, config: dict=None) -> None:
         self.config = dict()
         if config != None:
@@ -26,7 +27,7 @@ class DataHandlerBase(Generic[inputType, outputType]):
         #Setup cmd line parsing
         parser = argparse.ArgumentParser(description=__doc__)
         #Input file
-        parser.add_argument('-file', type=open,help="The path to the input file")
+        parser.add_argument('-file', type=argparse.FileType('r' + ('b' if self.readBinary else '')),help="The path to the input file")
         #Input config (if not the default dialect)
         parser.add_argument('-config', type=open,help="The path to the input config file")
         #Output file
@@ -46,7 +47,7 @@ class DataHandlerBase(Generic[inputType, outputType]):
             if onlyOneArg: 
                 pprint(self.config)
                 return
-
+        arguments.file.fileno
         if arguments.file != None:
             data = self.ProcessData(arguments.file)
             pprint(data)
@@ -81,7 +82,7 @@ class DataHandlerBase(Generic[inputType, outputType]):
 
 class DataHandlerArgs(argparse.Namespace):
     config: TextIOWrapper
-    file: TextIOWrapper
+    file: IOBase
     output: Path
     out: bool
     
