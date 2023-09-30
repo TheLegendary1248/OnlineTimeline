@@ -1,4 +1,4 @@
-"This module handles CSV files"
+"Builtin handler for CSV data. Outputs to dict"
 from __future__ import annotations
 import csv
 from io import TextIOWrapper
@@ -31,6 +31,7 @@ class BuiltinCSVHandler(DataHandlerBase):
             print("No given header for verification")
         
     def ProcessData(self, data: TextIOWrapper) -> None:
+        
         self.csvreader = csv.DictReader(data)
         self.dictArr: list[dict] = []
         for row in self.csvreader: 

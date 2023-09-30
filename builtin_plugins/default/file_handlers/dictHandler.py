@@ -1,9 +1,9 @@
-"This module handles CSV files"
+"Builtin handler for CSV data. Outputs to dict"
 from __future__ import annotations
-import csv
 from io import TextIOWrapper
 from pathlib import Path
 from pprint import pprint
+import pickle
 
 from OnlineTimeline.OTPlugin.Config import ConfigRoot, DataHandlerConfig
 from OnlineTimeline.OTPlugin.DataHandlerBase import DataHandlerBase
@@ -19,8 +19,9 @@ class BuiltinDictHandler(DataHandlerBase):
         self.typedConfig = ConfigRoot(self.config, DictConfigRoot)
         
     def ProcessData(self, data: TextIOWrapper) -> None:
+        self.dictsArr = pickle.load(data)
         self.eventArr = []
-        return self.eventArr
+        return self.dictsArr
 
 class DictConfigRoot(DataHandlerConfig):
     """Test Text"""

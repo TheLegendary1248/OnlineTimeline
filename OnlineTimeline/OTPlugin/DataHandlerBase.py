@@ -1,10 +1,11 @@
+"""Contains the base class for all data handlers and relevant functionality"""
 import json
 import argparse
 from pprint import pprint
 from io import TextIOWrapper
-from OnlineTimeline.OTPlugin.Config import ConfigRoot
+# from OnlineTimeline.OTPlugin.Config import ConfigRoot
 from OnlineTimeline.globals import CONFIG
-from typing import TypeVar, Generic, Type
+from typing import TypeVar, Generic
 from pathlib import Path
 from datetime import datetime
 import pickle
@@ -24,14 +25,14 @@ class DataHandlerBase(Generic[inputType, outputType]):
         """Use command arguments, usually for testing the handler separate of the program"""
         #Setup cmd line parsing
         parser = argparse.ArgumentParser(description=__doc__)
-
-        
         #Input file
         parser.add_argument('-file', type=open,help="The path to the input file")
         #Input config (if not the default dialect)
         parser.add_argument('-config', type=open,help="The path to the input config file")
         #Output file
         parser.add_argument('-output', type=Path, help="The output file")
+        
+        parser.add_argument('--out', action=argparse.BooleanOptionalAction, help="Flag for no output")
 
         namespace = DataHandlerArgs()
         #If send to timeline
@@ -51,17 +52,21 @@ class DataHandlerBase(Generic[inputType, outputType]):
             pprint(data)
             if arguments.output != None:
                 raise NotImplementedError("Code is missing")
-                arguments.output.open('w')
-            else:
-                # Default output function
-                now = datetime.now()
-                hashname = f"{self.__class__.__name__}.{now.date()}.pickle"
-                path = Path(CONFIG["OnlineTimelineCore"]["TempLocation"])/hashname
-                print("Output will be written to temp location at " + str(path))
-                EnsurePath(path)
-                with open(path, "wb") as file:
-                    pickle.dump(data, file)
-                    file.close()
+                # arguments.output.open('w')
+            elif arguments.out:
+                self._SaveToTemp(data)
+                
+    def _SaveToTemp(self, data):
+        """Saves data to temp file"""
+        # Default output function
+        now = datetime.now()
+        hashname = f"{self.__class__.__name__}.{now.date()}.pickle"
+        path = Path(CONFIG["OnlineTimelineCore"]["TempLocation"])/hashname
+        print("Output will be written to temp location at " + str(path))
+        EnsurePath(path)
+        with open(path, "wb") as file:
+            pickle.dump(data, file)
+            file.close()
 
     def ProcessData(self, data: inputType) -> outputType:
         """Process the data given"""
@@ -78,7 +83,7 @@ class DataHandlerArgs(argparse.Namespace):
     config: TextIOWrapper
     file: TextIOWrapper
     output: Path
-
-def _SaveToTemp():
-    pass
+    out: bool
     
+if __name__ == "__main__":
+    print("This module is not designed to run standalone")
