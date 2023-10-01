@@ -6,7 +6,7 @@ from pathlib import Path
 from pprint import pprint
 
 from OnlineTimeline.OTPlugin.Config import ConfigRoot, DataHandlerConfig
-from OnlineTimeline.OTPlugin.DataHandlerBase import DataHandlerBase
+from OnlineTimeline.OTPlugin.DataHandlerBase import DataHandlerBase, VariableKeyDict
 
 class BuiltinCSVHandler(DataHandlerBase):
     """The builtin handler for CSV files"""
@@ -48,9 +48,16 @@ class CSVConfigRoot(DataHandlerConfig):
     def __init__(self, config: dict) -> None:
         self.config = config
         self.expectedHeader: list[str] = config["expectedHeader"]
+        self.conversions =  ShallowConversionConfig(config["conversions"])
     def __repr__(self):
         return f"{self.__class__.__name__}({self.config})"
 
+class ShallowConversionConfig(VariableKeyDict):
+    """Class for representing config for conversions"""
+    def __init__(self, config: dict) -> None:
+        self.config = config
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.config})"
 
 if  __name__ == '__main__':
     handler = BuiltinCSVHandler()

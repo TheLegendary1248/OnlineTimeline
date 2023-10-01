@@ -2,6 +2,7 @@
     "MediumID": {
         "EventID": {
             "time": 0,
+            "endTime":0,
             "data": {}
         }
     }

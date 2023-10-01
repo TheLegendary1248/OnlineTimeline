@@ -11,6 +11,7 @@
         },
         "conversions": {
             "(Fare Amount)|(.* (Lng|Lat))|(Distance.*)": {
+                "isRegex": true,
                 "type":"number"
             },
             ".* Time": {

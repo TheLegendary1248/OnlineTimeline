@@ -19,12 +19,15 @@
             "Fare Currency"
         ],
         "conversions": {
-            "Fare Amount": "number",
-            "Request Time": {
-                "isRegex": "true",
+            "(Fare Amount)|(.* (Lng|Lat))|(Distance.*)": {
+                "type":"number"
+            },
+            ".* Time": {
+                "isRegex": true,
                 "type": "time",
                 "config": {
-                    "format": ""
+                    "method":"strptime",
+                    "format": "%Y-%m-%d %X %z %Z"
                 }
             },
             "Trip or Order Status": {

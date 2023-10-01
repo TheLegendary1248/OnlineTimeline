@@ -7,6 +7,26 @@
             "properties" : {
                 "expectedHeader" : {
                     "description" : "An array of strings that the first line in the csv should match. Regex is not used here (yet)."
+                },
+                "conversions": {
+                    "type": "object",
+                    "description": "Conversions of the dictionary values",
+                    "patternProperties": {
+                        "^.*$" :{
+                            "description": "The key to be matched",
+                            "type": ["object","string"],
+                            "properties": {
+                                "isRegex":{
+                                    "type":"boolean",
+                                    "description": "Is the given key to this object Regex string?"
+                                },
+                                "type": {
+                                    "type":"string",
+                                    "description": "The type of converter to be used"
+                                }
+                            }
+                        }
+                    }
                 }
             }
         },
