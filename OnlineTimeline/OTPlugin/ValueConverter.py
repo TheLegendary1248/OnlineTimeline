@@ -2,6 +2,7 @@
 from __future__ import annotations
 import argparse
 import ast
+import json
 from pprint import pprint
 
 class ValueConverter():
@@ -58,7 +59,7 @@ if __name__ == '__main__':
     #Input value
     parser.add_argument('-value', type=ast.literal_eval, required=True, help="The path to the input file")
     #Input config 
-    parser.add_argument('-config', type=ast.literal_eval, required=True, help="Config for this converter")
+    parser.add_argument('-config', type=json.loads, required=True, help="Config for this converter")
     #Input type
     parser.add_argument('-type', type=str, required=True, help="Type of converter")
 
