@@ -5,6 +5,7 @@ import ast
 import json
 from pprint import pprint
 
+isMain = __name__ == '__main__'
 # ---BASE CONVERTER DEFINITION---
 class ValueConverter():
     """This class is for value conversions, usually for parsing strings"""
@@ -12,10 +13,11 @@ class ValueConverter():
     hasCachedConverters = False
     name = "base"
     def __init__(self) -> None:
+        self.config = {}
         pass
     
     def LoadConfig(self, config: dict) -> None:
-        self.config = config
+        self.config.update(config)
         pass
 
     def ConvertValue(self, val) -> None:
@@ -36,9 +38,10 @@ class ValueConverter():
         if not ValueConverter.hasCachedConverters:
             ValueConverter.RegisterConverters()
 
-        converter = ValueConverter.registered[type]()
+        converter:ValueConverter = ValueConverter.registered[type]()
         converter.LoadConfig(config)
-        pprint(f"handed down config is {config}")
+        if isMain:
+            pprint(converter.config)
         return converter.ConvertValue(value)
 
 # ---BUILTIN CONVERTERS---
@@ -61,12 +64,25 @@ class TimeConverter(ValueConverter):
 
 class EnumConverter(ValueConverter):
     name = "enum"
+    def __init__(self) -> None:
+        super().__init__()
+        self.config = {"keepOnKeyError": False}
+
     def ConvertValue(self, val) -> None:
-        values: dict = None
-        return values["val"]
+        values: dict = self.config["values"]
+        #Change to enum value
+        if val in values:
+            return values[val]
+        #If value should be kept if it's not found
+        if self.config["keepOnKeyError"]:
+            return val
+        #Default value if not found
+        if "default" in self.config:
+            return self.config["default"]
+        raise KeyError(f"Value '{val}' not found for EnumConverter") 
     def LoadConfig(self, val: dict) -> None:
-        return super().LoadConfig()
-    pass
+        super().LoadConfig(val)
+
 
 class NumberConverter(ValueConverter):
     name = ""

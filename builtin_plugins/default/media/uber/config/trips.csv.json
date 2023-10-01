@@ -34,9 +34,11 @@
                 "type": "enum",
                 "config": {
                     "values": {
+                        "UNFULFILLED": 2,
                         "COMPLETED": 1,
                         "CANCELLED": 0
-                    }
+                    },
+                    "keepOnKeyError": true
                 }
             }
         }
