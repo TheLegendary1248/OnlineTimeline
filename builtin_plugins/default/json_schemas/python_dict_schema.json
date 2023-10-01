@@ -1,23 +1,33 @@
 {
     "type": "object",
-    "properties": {
-        "conversions": {
-            "type": "object",
-            "description": "Conversions of the dictionary values "
-        },
-        "eventData": {
-            "type": "object",
-            "description": "Conversion from the object to an Event",
+    "properties" : {
+        "config": 
+        {
+            "description" : "The configuration for this file reader",
             "properties": {
-                "id": {
-                    "description": "The data that will be hashed together to form this event's id. They should be static, aka, never changing",
-                    "type" : "array"
+                "eventData": {
+                    "type": "object",
+                    "description": "Conversion from the object to an Event",
+                    "markdownDescription": "### Conversion from the object to an Event.\n\rAll Event specific properties will be removed",
+                    "properties": {
+                        "id": {
+                            "description": "The data that will be hashed together to form this event's id. They should be static, aka, never changing",
+                            "type" : "array"
+                        },
+                        "timestamp": {
+                            "description": "The field that contains exact time this event happened",
+                            "type" : "string"
+                        }
+                    }
                 },
-                "timestamp": {
-                    "description": "The field that contains exact time this event happened",
-                    "type" : "string"
+                "conversions": {
+                    "type": "object",
+                    "description": "Conversions of the dictionary values "
                 }
             }
+        },
+        "output": {
+            "description": "Config file for processing the output"
         }
     }
 }

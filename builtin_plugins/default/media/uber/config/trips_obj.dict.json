@@ -1,29 +1,35 @@
 {
-    "conversions": {
-        "Fare Amount": "number",
-        "Request Time|Dropoff Time" : {
-            "isRegex": "true",
-            "type" : "time",
-            "config" : { "format" : "" }
+    "$schema": "../../../json_schemas/python_dict_schema.json",
+    "config": {
+        "eventData": {
+            "timestamp": "Request Time",
+            "id": [
+                "Request Time",
+                "Begin Trip Lat",
+                "Begin Trip Lng"
+            ]
         },
-        "Trip or Order Status" : {
-            "type" : "enum",
-            "config" : 
-            {
-                "values" : {
-                    "COMPLETED" : 1,
-                    "CANCELLED" : 0
+        "conversions": {
+            "(Fare Amount)|(.* (Lng|Lat))|(Distance.*)": {
+                "type":"number"
+            },
+            ".* Time": {
+                "isRegex": "true",
+                "type": "time",
+                "config": {
+                    "method":"strptime",
+                    "format": "%Y-%m-%d %X %z %Z"
+                }
+            },
+            "Trip or Order Status": {
+                "type": "enum",
+                "config": {
+                    "values": {
+                        "COMPLETED": 1,
+                        "CANCELLED": 0
+                    }
                 }
             }
         }
-    },
-    "eventData" :
-    {
-        "timestamp" : "Request Time",
-        "id" : [
-            "Request Time",
-            "Begin Trip Lat",
-            "Begin Trip Lng"
-        ]
     }
 }

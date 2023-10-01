@@ -30,6 +30,10 @@ class DictConfigRoot(DataHandlerConfig):
     def __repr__(self):
         return f"{self.__class__.__name__}({self.config})"
 
+class DictConfigToEvent(DataHandlerConfig):
+    """"""
+    
+
 if  __name__ == '__main__':
     handler = BuiltinDictHandler()
     handler.UseCmdArguments()

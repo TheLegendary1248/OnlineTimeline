@@ -17,7 +17,26 @@
             "Distance (miles)",
             "Fare Amount",
             "Fare Currency"
-        ]
+        ],
+        "conversions": {
+            "Fare Amount": "number",
+            "Request Time": {
+                "isRegex": "true",
+                "type": "time",
+                "config": {
+                    "format": ""
+                }
+            },
+            "Trip or Order Status": {
+                "type": "enum",
+                "config": {
+                    "values": {
+                        "COMPLETED": 1,
+                        "CANCELLED": 0
+                    }
+                }
+            }
+        }
     },
-    "output":"trips_obj.dict.json"
+    "output": "trips_obj.dict.json"
 }

@@ -85,6 +85,11 @@ class DataHandlerArgs(argparse.Namespace):
     file: IOBase
     output: Path
     out: bool
+
+class IsRegex():
+    def __init__(self) -> None:
+        self.isRegex = False
+    pass
     
 if __name__ == "__main__":
     print("This module is not designed to run standalone")
