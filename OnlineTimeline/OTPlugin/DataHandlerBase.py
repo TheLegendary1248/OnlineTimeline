@@ -18,7 +18,7 @@ class DataHandlerBase(Generic[inputType, outputType]):
     """Base class for all data handlers"""
     readBinary = True
     def __init__(self, config: dict=None) -> None:
-        self.config = dict()
+        self.configRoot = dict()
         if config != None:
             self.LoadConfig(config)
         pass
@@ -45,9 +45,8 @@ class DataHandlerBase(Generic[inputType, outputType]):
         if arguments.config != None:
             self.LoadConfig(arguments.config)
             if onlyOneArg: 
-                pprint(self.config)
+                pprint(self.configRoot)
                 return
-        arguments.file.fileno
         if arguments.file != None:
             data = self.ProcessData(arguments.file)
             pprint(data)
@@ -76,7 +75,8 @@ class DataHandlerBase(Generic[inputType, outputType]):
     def LoadConfig(self, config: dict) -> None:
         """Loads the configuration for this handler"""
         #Ensure type here
-        self.config = json.load(config)
+        loadedConfig: dict = json.load(config)
+        self.configRoot = loadedConfig 
         """Configuration of this file handler as a dictionary"""
         pass
 

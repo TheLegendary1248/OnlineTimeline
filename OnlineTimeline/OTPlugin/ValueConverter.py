@@ -46,14 +46,15 @@ class ValueConverter():
     
     @staticmethod
     def GetConverter(type:str)-> ConversionConfig:
-        
+        pass
 
 class ConversionConfig(dict, ValueConverter):
-    self.type: str
-    self.converter: ValueConverter
-    def __init__(self) -> None:
+    type: str
+    converter: ValueConverter
+    def __init__(self, *args) -> None:
+        super().__init__(*args)
         self.type = self["type"]
-        self.converter = 
+        self.converter = 0
 
 # ---BUILTIN CONVERTERS---
 class TimeConverter(ValueConverter):

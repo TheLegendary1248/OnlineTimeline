@@ -9,6 +9,8 @@ from OnlineTimeline.OTPlugin.Config import ConfigRoot, DataHandlerConfig
 from OnlineTimeline.OTPlugin.DataHandlerBase import DataHandlerBase 
 from OnlineTimeline.OTPlugin.VariableKeyDict import PatternKeyDict
 from OnlineTimeline.OTPlugin.ValueConverter import ConversionConfig
+from collections import UserDict
+
 
 class BuiltinCSVHandler(DataHandlerBase):
     """The builtin handler for CSV files"""
@@ -18,11 +20,12 @@ class BuiltinCSVHandler(DataHandlerBase):
         
     def LoadConfig(self, config: TextIOWrapper) -> None:
         super().LoadConfig(config)
-        self.typedConfig = ConfigRoot(self.config, CSVConfigRoot)
+        self.typedConfig = ConfigRoot(CSVConfigRoot, self.configRoot)
+        self.configRoot = ConfigRoot(CSVConfigRoot, self.configRoot)
         
     def VerifyHeader(self):
         """Verifies the expected header field from config"""
-        expectedHeader = self.typedConfig.config.expectedHeader
+        expectedHeader = self.configRoot.config.expectedHeader
         if expectedHeader == None:
             print("Config does not include Expected Header")
             return
@@ -30,37 +33,46 @@ class BuiltinCSVHandler(DataHandlerBase):
             # Check that all values are in the Expected Header
             if not all([val in self.csvreader.fieldnames for val in expectedHeader]):
                 raise BaseException(f"Expected header does not match that found in {self.csvreader}")
+            else:
+                print("Header is verified")
         else:
             print("No given header for verification")
+    
+    def DoConversions():
         
+        pass
+
     def ProcessData(self, data: TextIOWrapper) -> None:
         self.csvreader = csv.DictReader(data)
+        self.VerifyHeader()
         self.dictArr: list[dict] = []
         for row in self.csvreader: 
             self.dictArr.append(row)
+        self.DoConversions()
         return self.dictArr
 
 class CSVConfigRoot(DataHandlerConfig):
     """Test Text"""
     def __init__(self, config: dict) -> None:
-        self.config = config
+        self.configRoot = config
         self.expectedHeader: list[str] = config["expectedHeader"]
         self.conversions =  ShallowConversionConfig(config["conversions"])
     def __repr__(self):
-        return f"{self.__class__.__name__}({self.config})"
+        return f"{self.__class__.__name__}({self.configRoot})"
 
-class ShallowConversionConfig(PatternKeyDict):
-    """Class for representing config for conversions, assuming the given dictionary isn't nested"""
-    def __init__(self, config: dict) -> None:
-        self.config = config
-    def CacheConfig(self):
-        for k in self.keys():
-            self[k] = ConversionConfig[self.k]
+class ShallowConversionConfig(PatternKeyDict[ConversionConfig]):
+    """Class for representing configuration for conversions, assuming the given dictionary isn't nested"""
+    def __init__(self,*args):
+        super().__init__(*args)
+        self.LoadConfig()
+        
+    def LoadConfig(self):
+        """Create proper wrappers for this dictionary's items"""
+        for k,v in self.items():
+            self[k] = ConversionConfig(v)
         pass
     def __repr__(self):
-        return f"{self.__class__.__name__}({self.config})"
-    
-class 
+        return f"{self.__class__.__name__}({self.configRoot})"
 
 if  __name__ == '__main__':
     handler = BuiltinCSVHandler()
