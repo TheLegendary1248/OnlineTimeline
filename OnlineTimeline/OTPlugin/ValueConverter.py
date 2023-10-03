@@ -55,6 +55,8 @@ class ConversionConfig(dict, ValueConverter):
         super().__init__(*args)
         self.type = self["type"]
         self.converter = 0
+    def __repr__(self):
+        return f"{self.__class__.__name__}(\n{super(type(self), self).__repr__()})"
 
 # ---BUILTIN CONVERTERS---
 class TimeConverter(ValueConverter):

@@ -1,16 +1,12 @@
 "Builtin handler for CSV data. Outputs to dict"
 from __future__ import annotations
 import csv
-from io import TextIOWrapper, IOBase
-from pathlib import Path
+from io import TextIOWrapper
 from pprint import pprint
-
 from OnlineTimeline.OTPlugin.Config import ConfigRoot, DataHandlerConfig
 from OnlineTimeline.OTPlugin.DataHandlerBase import DataHandlerBase 
 from OnlineTimeline.OTPlugin.VariableKeyDict import PatternKeyDict
 from OnlineTimeline.OTPlugin.ValueConverter import ConversionConfig
-from collections import UserDict
-
 
 class BuiltinCSVHandler(DataHandlerBase):
     """The builtin handler for CSV files"""
@@ -20,7 +16,6 @@ class BuiltinCSVHandler(DataHandlerBase):
         
     def LoadConfig(self, config: TextIOWrapper) -> None:
         super().LoadConfig(config)
-        self.typedConfig = ConfigRoot(CSVConfigRoot, self.configRoot)
         self.configRoot = ConfigRoot(CSVConfigRoot, self.configRoot)
         
     def VerifyHeader(self):
@@ -39,7 +34,6 @@ class BuiltinCSVHandler(DataHandlerBase):
             print("No given header for verification")
     
     def DoConversions():
-        
         pass
 
     def ProcessData(self, data: TextIOWrapper) -> None:
@@ -53,26 +47,29 @@ class BuiltinCSVHandler(DataHandlerBase):
 
 class CSVConfigRoot(DataHandlerConfig):
     """Test Text"""
-    def __init__(self, config: dict) -> None:
-        self.configRoot = config
-        self.expectedHeader: list[str] = config["expectedHeader"]
-        self.conversions =  ShallowConversionConfig(config["conversions"])
+    def __init__(self, *args) -> None:
+        super().__init__(*args)
+        self.expectedHeader: list[str] = self["expectedHeader"]
+        conversions = ShallowConversionConfig(self["conversions"])
+        self["conversions"] = conversions
+        self.conversions =  conversions
     def __repr__(self):
-        return f"{self.__class__.__name__}({self.configRoot})"
+        return f"{self.__class__.__name__}(\n{super(type(self), self).__repr__()})"
 
 class ShallowConversionConfig(PatternKeyDict[ConversionConfig]):
     """Class for representing configuration for conversions, assuming the given dictionary isn't nested"""
-    def __init__(self,*args):
+    def __init__(self,*args) -> None:
         super().__init__(*args)
-        self.LoadConfig()
+        # self.LoadConfig()
         
     def LoadConfig(self):
         """Create proper wrappers for this dictionary's items"""
-        for k,v in self.items():
-            self[k] = ConversionConfig(v)
+        # for k,v in self.items():
+            # self[k] = ConversionConfig(v)
         pass
+
     def __repr__(self):
-        return f"{self.__class__.__name__}({self.configRoot})"
+        return f"{self.__class__.__name__}(\n{super(type(self), self).__repr__()})"
 
 if  __name__ == '__main__':
     handler = BuiltinCSVHandler()

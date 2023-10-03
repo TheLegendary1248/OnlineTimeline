@@ -17,4 +17,4 @@ class PatternKeyDict(Generic[configType], dict[str,configType]):
     def FindKeysByRegex(self, pattern:str) -> [str]:
         r = re.compile(pattern)
         list(filter(r.match, self.keys()))
-    pass
+    
