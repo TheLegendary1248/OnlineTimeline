@@ -50,11 +50,14 @@ class ValueConverter():
 
 class ConversionConfig(dict, ValueConverter):
     type: str
+    """The type of converter to be used"""
     converter: ValueConverter
+    config: dict | None
     def __init__(self, *args) -> None:
         super().__init__(*args)
         self.type = self["type"]
         self.converter = 0
+        self.config = self.setdefault("config", None)
     def __repr__(self):
         return f"{self.__class__.__name__}(\n{super(type(self), self).__repr__()})"
 
