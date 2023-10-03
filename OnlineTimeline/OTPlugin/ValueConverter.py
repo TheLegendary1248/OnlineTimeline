@@ -34,7 +34,7 @@ class ValueConverter():
 
     @staticmethod
     def ConvertValue(type: str, value, config: dict):
-        """Convert the value with said config"""
+        """Convert the value with said config. Instances a new ValueConverter"""
         if not ValueConverter.hasCachedConverters:
             ValueConverter.RegisterConverters()
 
@@ -43,6 +43,17 @@ class ValueConverter():
         if isMain:
             pprint(converter.config)
         return converter.ConvertValue(value)
+    
+    @staticmethod
+    def GetConverter(type:str)-> ConversionConfig:
+        
+
+class ConversionConfig(dict, ValueConverter):
+    self.type: str
+    self.converter: ValueConverter
+    def __init__(self) -> None:
+        self.type = self["type"]
+        self.converter = 
 
 # ---BUILTIN CONVERTERS---
 class TimeConverter(ValueConverter):
@@ -86,6 +97,7 @@ class EnumConverter(ValueConverter):
 
 class NumberConverter(ValueConverter):
     name = ""
+
 
 class ValueConverterArgs(argparse.Namespace):
     value: any
