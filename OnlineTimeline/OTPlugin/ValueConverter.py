@@ -17,8 +17,8 @@ class ValueConverter():
         pass
     
     def LoadConfig(self, config: dict) -> None:
-        self.config.update(config)
-        pass
+        if config != None:
+            self.config.update(config)
 
     def ConvertValue(self, val) -> None:
         raise NotImplementedError("Base cannot be used for conversion")
@@ -37,8 +37,10 @@ class ValueConverter():
         """Convert the value with said config. Instances a new ValueConverter"""
         if not ValueConverter.hasCachedConverters:
             ValueConverter.RegisterConverters()
-
-        converter:ValueConverter = ValueConverter.registered[type]()
+        try:
+            converter:ValueConverter = ValueConverter.registered[type]()
+        except BaseException:
+            raise KeyError(f"Value Converter '{type}' is not registered")
         converter.LoadConfig(config)
         if isMain:
             pprint(converter.config)
@@ -102,7 +104,16 @@ class EnumConverter(ValueConverter):
 
 
 class NumberConverter(ValueConverter):
-    name = ""
+    name = "number"
+    def ConvertValue(self, val: str) -> None:
+        if not val:
+            return None
+        return float(val)
+
+
+class EnumTableConverter(ValueConverter):
+
+    pass
 
 
 class ValueConverterArgs(argparse.Namespace):

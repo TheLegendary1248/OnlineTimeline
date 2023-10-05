@@ -27,7 +27,7 @@
                 "config": {
                     "values": {
                         "COMPLETED": 1,
-                        "CANCELLED": 0
+                        "CANCELED": 0
                     }
                 }
             }

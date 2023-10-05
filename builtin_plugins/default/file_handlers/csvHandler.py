@@ -7,6 +7,8 @@ from OnlineTimeline.OTPlugin.Config import ConfigRoot, DataHandlerConfig
 from OnlineTimeline.OTPlugin.DataHandlerBase import DataHandlerBase 
 from OnlineTimeline.OTPlugin.VariableKeyDict import PatternKeyDict
 from OnlineTimeline.OTPlugin.ValueConverter import ConversionConfig, ValueConverter
+from OnlineTimeline.TimelineManager import Event
+
 
 class BuiltinCSVHandler(DataHandlerBase):
     """The builtin handler for CSV files"""
@@ -48,6 +50,13 @@ class BuiltinCSVHandler(DataHandlerBase):
                 dictObj[k] = ValueConverter.ConvertValue(conversionConfig.type, v, conversionConfig.config)
         pass
 
+    def ToEvent(self):
+        self.eventArr: list[Event] = []
+        for dict in self.dictArr:
+            time = dict.pop("time")
+            self.eventArr.append(E)
+        Event.AppendEvents([], "uber")
+        pass
     def ProcessData(self, data: TextIOWrapper) -> None:
         """Process the given data"""
         self.csvreader = csv.DictReader(data)
@@ -56,16 +65,21 @@ class BuiltinCSVHandler(DataHandlerBase):
         for row in self.csvreader: 
             self.dictArr.append(row)
         self.DoConversions()
+        self.ToEvent()
         return self.dictArr
 
 class CSVConfigRoot(DataHandlerConfig):
     """Test Text"""
     def __init__(self, *args) -> None:
         super().__init__(*args)
+        # TODO  this
         self.expectedHeader: list[str] = self["expectedHeader"]
         conversions = ShallowConversionConfig(self["conversions"])
         self["conversions"] = conversions
         self.conversions =  conversions
+        toEvent = ToEventConfig(self["toEvent"])
+        self["toEvent"] = toEvent
+        self.toEvent =  toEvent
     def __repr__(self):
         return f"\n{self.__class__.__name__}({super(type(self), self).__repr__()})"
 
@@ -83,6 +97,15 @@ class ShallowConversionConfig(PatternKeyDict[ConversionConfig]):
 
     def __repr__(self):
         return f"\n{self.__class__.__name__}({super(type(self), self).__repr__()})"
+
+class ToEventConfig(dict):
+    time: float | int
+    endtime: float | int
+    def __init__(self, *args) -> None:
+        super().__init__(*args)
+        time = self["time"]
+        endtime = self["endtime"]
+
 
 if  __name__ == '__main__':
     handler = BuiltinCSVHandler()
