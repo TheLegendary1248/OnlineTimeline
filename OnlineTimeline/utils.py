@@ -12,6 +12,7 @@ def EnsurePath(path: Path):
             path.mkdir(parents=True, exist_ok=True)
         else:
             path.parent.mkdir(parents=True, exist_ok=True)
+            path.open('a').close()
 
 class ObjectTraverse:
     """This is a simple class for getting around objects in python, intended to be used in config"""

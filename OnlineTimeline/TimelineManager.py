@@ -5,8 +5,8 @@ from OnlineTimeline import globals
 from OnlineTimeline.Utils import EnsurePath
 from pathlib import Path
 import json
-from datetime import datetime, date
-
+from datetime import datetime, date, timedelta
+import os
 savePath = Path(globals.CONFIG["OnlineTimelineCore"]["SaveLocation"])
 
 timelinePath = savePath / "timeline"
@@ -36,6 +36,9 @@ class Event:
                 "time" : self.timestamp,
                 "data" : self.data,
             }
+        if self.end_timestamp != None:
+            obj["endtime"] = self.end_timestamp
+            
         return obj
     
     @staticmethod
@@ -51,7 +54,7 @@ class Event:
         allEventsInDay:list[Event] = []
 
         for event in events:
-            eventDaysFromEpoch = epoch - event
+            eventDaysFromEpoch = timedelta(seconds=event.timestamp).days
             #Day difference checker, for file purposes 
             if daysFromEpoch == eventDaysFromEpoch:
                 allEventsInDay.append(event)
@@ -64,21 +67,27 @@ class Event:
             mediaObj = {
                 medianame : eventsAsDict
             }
-            continue
-            #If difference, flush current file and flush to next
-            with open('DAY.json', 'r+') as f:
-                dayData = json.load(f)
-                dayData.update(mydict)
-                f.seek(0)
-                json.dump(dayData, f)
+            fileDate = epoch + timedelta(days=daysFromEpoch)
+            fileDayPath = timelinePath / f"{fileDate.year}/{fileDate.month}/{fileDate.day}.json"
+            EnsurePath(fileDayPath)
+            filesize = os.path.getsize(fileDayPath)
+            if filesize != 0:
+                with open(fileDayPath, 'w') as f:
+                    dayData = json.load(f) or {}
+                    dayData.update(mediaObj)
+                    f.seek(0)
+                    json.dump(dayData, f)
+            else:
+                with open(fileDayPath, 'r+') as f:
+                    json.dump(mediaObj, f)
+                    
             daysFromEpoch = eventDaysFromEpoch
             allEventsInDay.clear()
             allEventsInDay.append(event)
             pass
 
         return
-        fileDayPath = timelinePath / f"{date.year}/{date.month}/{date.day}.json"
-        EnsurePath(fileDayPath)
+        
         pass
 
 def GetExistingJSONObject():

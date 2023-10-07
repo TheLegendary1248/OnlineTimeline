@@ -53,9 +53,10 @@ class BuiltinCSVHandler(DataHandlerBase):
     def ToEvent(self):
         self.eventArr: list[Event] = []
         for dict in self.dictArr:
-            time = dict.pop("time")
-            self.eventArr.append(E)
-        Event.AppendEvents([], "uber")
+            time = dict.pop(self.configRoot.config.toEvent.time)
+            endtime = dict.pop(self.configRoot.config.toEvent.endtime)
+            self.eventArr.append(Event(timestamp= time, end_timestamp=endtime, data=dict))
+        Event.AppendEvents(self.eventArr, "uber")
         pass
     def ProcessData(self, data: TextIOWrapper) -> None:
         """Process the given data"""
@@ -83,6 +84,7 @@ class CSVConfigRoot(DataHandlerConfig):
     def __repr__(self):
         return f"\n{self.__class__.__name__}({super(type(self), self).__repr__()})"
 
+
 class ShallowConversionConfig(PatternKeyDict[ConversionConfig]):
     """Class for representing configuration for conversions, assuming the given dictionary isn't nested"""
     def __init__(self,*args) -> None:
@@ -103,8 +105,8 @@ class ToEventConfig(dict):
     endtime: float | int
     def __init__(self, *args) -> None:
         super().__init__(*args)
-        time = self["time"]
-        endtime = self["endtime"]
+        self.time = self["time"]
+        self.endtime = self["endtime"]
 
 
 if  __name__ == '__main__':
