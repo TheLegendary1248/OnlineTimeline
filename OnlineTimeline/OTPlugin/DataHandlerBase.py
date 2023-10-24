@@ -13,7 +13,6 @@ from OnlineTimeline.Utils import EnsurePath
 inputType = TypeVar('inputType')
 outputType = TypeVar('outputType')
 
-
 class DataHandlerBase(Generic[inputType, outputType]):
     """Base class for all data handlers"""
     readBinary = True

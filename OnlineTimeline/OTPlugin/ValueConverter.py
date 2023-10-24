@@ -9,7 +9,7 @@ isMain = __name__ == '__main__'
 # ---BASE CONVERTER DEFINITION---
 class ValueConverter():
     """This class is for value conversions, usually for parsing strings"""
-    registered:dict[str, ValueConverter.__class__] = {}
+    registered:dict[str, ValueConverter] = {}
     hasCachedConverters = False
     name = "base"
     def __init__(self) -> None:
