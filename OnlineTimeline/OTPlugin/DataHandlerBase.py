@@ -39,6 +39,9 @@ class DataHandlerBase(Generic[inputType, outputType]):
         arguments = parser.parse_args(namespace=namespace)
         # Count how many arguments have a non-None value
         argCount = [v != None for v in vars(arguments).values()].count(True)
+        if argCount == 0:
+            print("No arguments were given")
+            exit()
         onlyOneArg = argCount == 1
         #Create handler instance
         if arguments.config != None:

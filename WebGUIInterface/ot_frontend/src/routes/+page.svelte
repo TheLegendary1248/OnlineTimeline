@@ -1,7 +1,7 @@
 <script>
 	import heko from '$lib/test.year.month.day.json'
 	let scrollerdate = '';
-	
+	let stringifyFunc = (heko) => JSON.stringify(heko,null,"\xa0\xa0\xa0\xa0")
 </script>
 
 <svelte:head>
@@ -10,19 +10,14 @@
 </svelte:head>
 
 <section>
-	<h1>Welcome to Online Timeline</h1>
+	<h1 hidden="true">Welcome to Online Timeline</h1>
 	<div style="position: relative; width: 600px; height: 600px;">
 		<div id="timeline-scrollerview">
 			<nav>	
 				<input bind:value={scrollerdate} type="date">
 			</nav>
 			<pre id="container">
-				Hello
-				this is text, no?
-				&nbsp   TREAT MY SPACES PLS
-				{NaN || scrollerdate}
-				type is {typeof(scrollerdate)}
-				{JSON.stringify(heko,null,"\xa0\xa0\xa0\xa0")}
+				{stringifyFunc(heko)}
 			</pre>
 		</div>
 	</div>
