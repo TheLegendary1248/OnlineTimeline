@@ -24,5 +24,9 @@
             ],
             "url": "./builtin_plugins/default/json_schemas/python_dict_schema.json"
         }
-    ]
+    ],
+    "python.terminal.activateEnvironment": true,
+    "terminal.integrated.profiles.windows" : {
+        
+    }
 }

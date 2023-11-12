@@ -1,15 +1,22 @@
-# Prepare to do things async
+import sys
+import os
+sys.path.append('./')
+print(sys.path)
+print(os.getcwd())
+
 import asyncio
 import time
-print("Hey, is this supposed to run?")
-
-# Launch WebUI
 import WebGUIInterface as GUI
-import OTPlugin
+#import OTPlugin
 
+# for root, dirs, files in os.walk(".", topdown=False):
+#    for name in files:
+#       print(os.path.join(root, name))
+#    for name in dirs:
+#       print(os.path.join(root, name))
 
 async def runTillTheEnd():
-    OTPlugin.ReloadPlugins()
+    # OTPlugin.ReloadPlugins()
     while True:
         await asyncio.sleep(0)
         print(f"GUI is still running at {time.time()}")
@@ -25,5 +32,8 @@ async def main():
     pass
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    print("hello world!")
+    input("Press anything to enter")
+    GUI.newmain()
+    input("Enter anything to leave")
     pass
