@@ -10,10 +10,13 @@ qtForms
 __pycache__/
 *.py[cod]
 *$py.class
-
+/bin
+bin/
 # C extensions
 *.so
-
+# Databases
+*.sqlite3
+pyvenv.cfg
 # Distribution / packaging
 .Python
 build/
@@ -24,6 +27,8 @@ eggs/
 .eggs/
 lib/
 lib64/
+# fricken symbolic link
+lib64
 parts/
 sdist/
 var/
