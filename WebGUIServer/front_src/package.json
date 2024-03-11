@@ -9,11 +9,17 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@babel/cli": "^7.23.9",
+    "@babel/core": "^7.24.0",
+    "@babel/plugin-transform-react-jsx": "^7.23.4",
+    "@babel/preset-env": "^7.24.0",
+    "@types/mithril": "^2.2.6",
     "less": "^4.2.0",
     "typescript": "^5.2.2",
     "vite": "^5.1.4"
   },
   "dependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
     "mithril": "^2.2.2"
   }
 }
