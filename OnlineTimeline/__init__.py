@@ -10,3 +10,10 @@ print(sys.path)
 if __name__ == "__main__":
     print('Running OT init')
     pass
+
+def loadcore():
+    pass
+
+def loadmods():
+    pass
+
