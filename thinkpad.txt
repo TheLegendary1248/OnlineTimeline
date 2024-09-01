@@ -1,0 +1,8 @@
+This app is timeline generator, made of a database and a front end to view your data
+- Database / Backend Server
+: Logic for recieving requests to the database and maintaining it 
+: Logic for a front end
+: Logic for digesting data to be put in a suitable format for the database
+
+In an ideal world, there is some unifying, common trait between everything, and in the case of this application, it should be the binary that makes up the data. Everything should be relational somehow, and in this case, the main measurement is time
+I can't decide if there should be a core, some logic that defines types and how to treat the data, or the definition of the data should be made up and adapted by each part of the program
