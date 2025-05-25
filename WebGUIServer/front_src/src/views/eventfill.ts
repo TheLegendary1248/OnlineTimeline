@@ -11,7 +11,8 @@ function EventFill()
         m("div",{class:"meta"},[
           m("div",vnode.attrs.id),
           m("button",[
-            m("span","TIME")
+            m("span","TIME"),
+            m("span","THING")
           ])
         ]),
         m("div", {class:"data"},[

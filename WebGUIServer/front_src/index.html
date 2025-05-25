@@ -4,10 +4,24 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OnlineTimeline</title>
+    <script type="module" src="/src/main.ts"></script>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <div id="app">
+      <day-summary-view></day-summary-view>
+    </div>
   </body>
+  <template id="template">
+    <div class="eventfill">
+      This event has no defined element
+    </div>
+  </template>
+  <template id="day-summary-view">
+    <nav>
+      <button class="previous">&leftarrow; previous</button>
+      <span class="date">{{DATE OF DAY}}</span>
+      <button class="next">next &rightarrow;</button>
+    </nav>
+    <p>This day has no data :(<p>
+  </template>
 </html>
