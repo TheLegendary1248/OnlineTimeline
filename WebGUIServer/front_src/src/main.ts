@@ -7,6 +7,16 @@ customElements.define(
     constructor() {
       super();
     }
+    init(prop){
+      this.prop = prop
+      if(this.isConnected) this.render()
+    }
+    render(){
+      if(this.prop == null) return
+      let para = this.querySelector("p")
+      console.log(para)
+      para.textContent = JSON.stringify(this.prop)
+    }
     connectedCallback(){
       let template = document.getElementById("template")?.content
       let clone = template.cloneNode(true)
@@ -15,6 +25,7 @@ customElements.define(
       //Default style of all web components is inline
       //possibly change because it's an element style and could be a challenge to override
       this.style.display = "block"
+      this.render()
     }
   }
 )
@@ -41,7 +52,7 @@ customElements.define(
       day.setMinutes(0)
       day.setHours(0)
 
-      this.querySelector(".date").textContent = `${day.getDate()}/${day.getMonth()}/${day.getFullYear()}`
+      this.querySelector(".date").textContent = `${day.getDate()}/${day.getMonth() + 1}/${day.getFullYear()}`
       this.day = day
       /*** @type HTMLButtonElement */
       this.querySelector(".next")
@@ -52,7 +63,7 @@ customElements.define(
     }
     moveDate(isForward){
       this.day = new Date(this.day.getTime() + (isForward ? 1 : -1) * 8.64e+7)
-      this.querySelector(".date").textContent = `${this.day.getDate()}/${this.day.getMonth()}/${this.day.getFullYear()}`
+      this.querySelector(".date").textContent = `${this.day.getDate()}/${this.day.getMonth() + 1}/${this.day.getFullYear()}`
     }
   }
 )
